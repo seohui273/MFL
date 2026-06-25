@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MARKET FRONTIER LAB (MFL)</title>
     <style>
-        /* 🎨 MFL 브랜드 컬러 변수 설정 */
+        /* 🎨 MFL 고유 브랜드 컬러 변수 정의 */
         :root {
-            --bg-color: #0b0925;
-            --point-yellow: #ebc244;
-            --white: #ffffff;
-            --card-bg: #16133a;
-            --text-gray: #a0aec0;
+            --bg-dark: #0b0925;
+            --point-gold: #ebc244;
+            --pure-white: #ffffff;
+            --card-surface: rgba(22, 19, 58, 0.6); /* 투명한 유리 느낌 */
+            --border-glow: rgba(235, 194, 68, 0.15);
+            --text-muted: #a0aec0;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* 기본 초기화 */
+        /* 기본 레이아웃 초기화 */
         * {
             margin: 0;
             padding: 0;
@@ -23,9 +25,10 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--white);
+            background-color: var(--bg-dark);
+            color: var(--pure-white);
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         a {
@@ -33,16 +36,31 @@
             color: inherit;
         }
 
-        /* 👑 상단 네비게이션 바 (헤더) */
+        /* 🪐 우주 같은 부드러운 배경 그라데이션 광채 효과 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 50%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(235, 194, 68, 0.08) 0%, rgba(11, 9, 37, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* 👑 1. 상단 네비게이션 바 (KUCC 스타일 고급형) */
         header {
-            background-color: rgba(11, 9, 37, 0.95);
-            border-bottom: 1px solid rgba(235, 194, 68, 0.2);
+            background-color: rgba(11, 9, 37, 0.75);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: var(--transition-smooth);
         }
 
         .nav-container {
@@ -51,22 +69,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
-            padding: 0 20px;
+            height: 75px;
+            padding: 0 24px;
         }
 
         .logo {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--white);
+            letter-spacing: 1.5px;
+            color: var(--pure-white);
+            cursor: pointer;
         }
 
         .logo span {
-            color: var(--point-yellow);
+            color: var(--point-gold);
+            background: linear-gradient(135deg, #fff7ad 0%, var(--point-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* 📋 메인 메뉴 구조 */
+        /* 대메뉴 */
         .nav-menu {
             display: flex;
             list-style: none;
@@ -76,176 +98,277 @@
         .menu-item {
             position: relative;
             height: 100%;
-            display: flex;
-            align-items: center;
         }
 
         .menu-item > a {
-            padding: 0 25px;
+            padding: 0 24px;
             font-weight: 600;
-            font-size: 16px;
-            transition: color 0.3s;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            transition: var(--transition-smooth);
             height: 100%;
             display: flex;
             align-items: center;
+            letter-spacing: 0.5px;
+        }
+
+        /* 메뉴 하단 언더라인 애니메이션 효과 */
+        .menu-item > a::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            left: 24px;
+            right: 24px;
+            height: 2px;
+            background-color: var(--point-gold);
+            transform: scaleX(0);
+            transition: var(--transition-smooth);
         }
 
         .menu-item:hover > a {
-            color: var(--point-yellow);
+            color: var(--point-gold);
         }
 
-        /* 🔽 마우스 올리면 스르륵 열리는 세부 메뉴 (드롭다운) */
+        .menu-item:hover > a::after {
+            transform: scaleX(1);
+        }
+
+        /* 🔽 부드러운 드롭다운 서브메뉴 카드 패널 */
         .dropdown {
             position: absolute;
-            top: 80px;
+            top: 75px;
             left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            background-color: var(--card-bg);
-            border: 1px solid rgba(235, 194, 68, 0.3);
-            border-radius: 8px;
+            transform: translateX(-50%) scale(0.95);
+            background-color: rgba(18, 15, 52, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
             list-style: none;
-            min-width: 160px;
-            padding: 10px 0;
+            min-width: 180px;
+            padding: 8px 0;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: var(--transition-smooth);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
         .menu-item:hover .dropdown {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) scale(1);
         }
 
         .dropdown li a {
-            padding: 12px 20px;
+            padding: 12px 24px;
             display: block;
             font-size: 14px;
-            color: var(--text-gray);
-            transition: all 0.3s;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
             text-align: center;
         }
 
         .dropdown li a:hover {
-            background-color: rgba(235, 194, 68, 0.1);
-            color: var(--point-yellow);
+            background-color: rgba(235, 194, 68, 0.08);
+            color: var(--point-gold);
+            padding-left: 28px;
+            padding-right: 20px;
         }
 
-        /* 🚀 메인 히어로 섹션 */
+        /* 🚀 2. 고급 히어로 섹션 (KUCC 감성 자아내기) */
         .hero-section {
             max-width: 1200px;
-            margin: 140px auto 60px;
-            padding: 0 20px;
+            margin: 160px auto 80px;
+            padding: 0 24px;
             text-align: center;
+            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(235, 194, 68, 0.1);
+            border: 1px solid rgba(235, 194, 68, 0.25);
+            color: var(--point-gold);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
         }
 
         .hero-section h1 {
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 18px;
+            letter-spacing: -1px;
+            line-height: 1.2;
         }
 
         .hero-section p {
-            color: var(--text-gray);
+            color: var(--text-muted);
             font-size: 18px;
-            font-style: italic;
-            margin-bottom: 30px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
         }
 
-        /* ✍️ 커뮤니티 게시판 구역 */
+        /* ✍️ 3. 메인 콘텐츠 및 대시보드 레이아웃 */
         .main-container {
-            max-width: 800px;
-            margin: 0 auto 100px;
-            padding: 0 20px;
+            max-width: 860px;
+            margin: 0 auto 120px;
+            padding: 0 24px;
         }
 
+        /* 글래스모피즘 보드 카드 */
         .board-card {
-            background-color: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            margin-bottom: 40px;
+            background: var(--card-surface);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 24px;
+            padding: 36px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            margin-bottom: 48px;
+            transition: var(--transition-smooth);
+        }
+
+        .board-card:hover {
+            border-color: var(--border-glow);
+            box-shadow: 0 30px 60px rgba(235, 194, 68, 0.05);
         }
 
         .board-card h2 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--point-yellow);
-            padding-left: 10px;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
+        .board-card h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(to bottom, var(--point-gold), #fff);
+            border-radius: 4px;
+        }
+
+        /* 인풋 폼 스타일링 */
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .form-group input[type="text"], .form-group textarea {
             width: 100%;
-            background-color: var(--bg-color);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 14px;
-            color: var(--white);
+            background-color: rgba(11, 9, 37, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            color: var(--pure-white);
             font-size: 15px;
-            transition: border-color 0.3s;
+            font-weight: 500;
+            transition: var(--transition-smooth);
         }
 
         .form-group input[type="text"]:focus, .form-group textarea:focus {
             outline: none;
-            border-color: var(--point-yellow);
+            border-color: var(--point-gold);
+            background-color: rgba(11, 9, 37, 0.9);
+            box-shadow: 0 0 15px rgba(235, 194, 68, 0.1);
         }
 
         .form-group textarea {
-            height: 120px;
+            height: 140px;
             resize: none;
+            line-height: 1.6;
+        }
+
+        /* 파일 업로드 커스텀 버튼 디자인 */
+        .file-wrapper {
+            position: relative;
+            margin-bottom: 24px;
         }
 
         .file-custom {
-            display: block;
-            margin-top: 10px;
-            color: var(--text-gray);
             font-size: 14px;
+            color: var(--text-muted);
+            cursor: pointer;
         }
 
+        /* 등록 버튼 */
         .submit-btn {
-            background-color: var(--point-yellow);
-            color: var(--bg-color);
+            background: linear-gradient(135deg, var(--point-gold) 0%, #d6af37 100%);
+            color: var(--bg-dark);
             border: none;
-            border-radius: 8px;
-            padding: 14px 28px;
+            border-radius: 12px;
+            padding: 16px 32px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
-            transition: background-color 0.3s;
+            transition: var(--transition-smooth);
+            box-shadow: 0 8px 20px rgba(235, 194, 68, 0.15);
         }
 
         .submit-btn:hover {
-            background-color: #d6af37;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(235, 194, 68, 0.3);
         }
 
-        /* 📋 게시글 목록 구역 */
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 📋 4. 실시간 피드 아이템 리스트 디자인 */
         .post-item {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.05);
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .post-item:hover {
+            background-color: rgba(255, 255, 255, 0.04);
+            transform: translateX(4px);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
         }
 
         .post-title {
             font-size: 18px;
             font-weight: 700;
-            color: var(--point-yellow);
-            margin-bottom: 8px;
+            color: var(--point-gold);
+        }
+
+        .post-date {
+            font-size: 13px;
+            color: var(--text-muted);
         }
 
         .post-content {
             color: #e2e8f0;
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.7;
+        }
+
+        /* 🎬 부드러운 시작 애니메이션 정의 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -294,32 +417,38 @@
     </header>
 
     <section class="hero-section">
+        <span class="hero-tag">From Market Insight to Strategic Action</span>
         <h1>MARKET FRONTIER LAB</h1>
-        <p>"From Market Insight to Strategic Action"</p>
+        <p>전북대학교 마케팅 실무 프로젝트 학회</p>
     </section>
 
     <main class="main-container">
         
         <div class="board-card">
-            <h2>✍️ 피드에 새 글 남기지 마케팅?</h2>
+            <h2>MFL 실시간 피드 작성</h2>
             <div class="form-group">
-                <input type="text" id="title" placeholder="제목을 입력해 주세요">
+                <input type="text" id="title" placeholder="게시글 제목을 입력하세요">
             </div>
             <div class="form-group">
-                <textarea id="content" placeholder="오늘 마케팅 실무 프로젝트 활동은 어땠나요? 내용을 공유해 주세요!"></textarea>
+                <textarea id="content" placeholder="오늘 실무 프로젝트 세션 혹은 팀플 피드백을 자유롭게 남겨보세요!"></textarea>
             </div>
-            <div class="form-group">
+            <div class="file-wrapper">
                 <input type="file" id="imageFile" class="file-custom">
             </div>
-            <button class="submit-btn" id="submitBtn">게시글 등록하기</button>
+            <button class="submit-btn" id="submitBtn">피드 등록하기</button>
         </div>
 
         <div class="board-card">
-            <h2>📋 MFL 실시간 피드</h2>
+            <h2>MFL Feed Timeline</h2>
             <div id="postList">
                 <div class="post-item">
-                    <div class="post-title">MFL 1기 마케팅 실무 프로젝트 첫 회의!</div>
-                    <div class="post-content">오늘 전북대 근처에서 첫 인사 나누고 앞으로의 실무 세션 계획을 짰습니다. 다들 열정이 넘쳐서 이번 학기 결과물이 너무 기대되네요! 화이팅 🚀</div>
+                    <div class="post-header">
+                        <div class="post-title">⚡ MFL 마케팅 실무 프로젝트 첫 킥오프 세션 완료!</div>
+                        <div class="post-date">방금 전</div>
+                    </div>
+                    <div class="post-content">
+                        오늘 전북대 캠퍼스에서 1기 학회원들과 첫 인사이트 워크숍을 진행했습니다! 시장 트렌드 분석 방법론을 다루었는데, 다들 날카로운 관점을 보여주셔서 이번 학기 기업 연계 실무 프로젝트 결과물이 진심으로 기대됩니다. 다들 최고예요 🚀
+                    </div>
                 </div>
             </div>
         </div>
