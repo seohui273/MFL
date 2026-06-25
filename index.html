@@ -2,31 +2,329 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>MFL 동아리 커뮤니티</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARKET FRONTIER LAB (MFL)</title>
+    <style>
+        /* 🎨 MFL 브랜드 컬러 변수 설정 */
+        :root {
+            --bg-color: #0b0925;
+            --point-yellow: #ebc244;
+            --white: #ffffff;
+            --card-bg: #16133a;
+            --text-gray: #a0aec0;
+        }
+
+        /* 기본 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 👑 상단 네비게이션 바 (헤더) */
+        header {
+            background-color: rgba(11, 9, 37, 0.95);
+            border-bottom: 1px solid rgba(235, 194, 68, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--white);
+        }
+
+        .logo span {
+            color: var(--point-yellow);
+        }
+
+        /* 📋 메인 메뉴 구조 */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            height: 100%;
+        }
+
+        .menu-item {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-item > a {
+            padding: 0 25px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-item:hover > a {
+            color: var(--point-yellow);
+        }
+
+        /* 🔽 마우스 올리면 스르륵 열리는 세부 메뉴 (드롭다운) */
+        .dropdown {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--card-bg);
+            border: 1px solid rgba(235, 194, 68, 0.3);
+            border-radius: 8px;
+            list-style: none;
+            min-width: 160px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .menu-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown li a {
+            padding: 12px 20px;
+            display: block;
+            font-size: 14px;
+            color: var(--text-gray);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .dropdown li a:hover {
+            background-color: rgba(235, 194, 68, 0.1);
+            color: var(--point-yellow);
+        }
+
+        /* 🚀 메인 히어로 섹션 */
+        .hero-section {
+            max-width: 1200px;
+            margin: 140px auto 60px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-section p {
+            color: var(--text-gray);
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        /* ✍️ 커뮤니티 게시판 구역 */
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        .board-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+        }
+
+        .board-card h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--point-yellow);
+            padding-left: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group input[type="text"], .form-group textarea {
+            width: 100%;
+            background-color: var(--bg-color);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 14px;
+            color: var(--white);
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input[type="text"]:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--point-yellow);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .file-custom {
+            display: block;
+            margin-top: 10px;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            background-color: var(--point-yellow);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 8px;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #d6af37;
+        }
+
+        /* 📋 게시글 목록 구역 */
+        .post-item {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .post-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--point-yellow);
+            margin-bottom: 8px;
+        }
+
+        .post-content {
+            color: #e2e8f0;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>🚀 MFL 동아리 커뮤니티 게시판</h1>
-    <p>우리 동아리원들이 글과 사진을 올리는 공간입니다.</p>
-
-    <hr>
-
-    <div>
-        <h3>새 글 작성하기</h3>
-        <input type="text" id="title" placeholder="제목을 입력하세요" style="width: 300px;"><br><br>
-        <textarea id="content" placeholder="내용을 입력하세요" style="width: 300px; height: 100px;"></textarea><br><br>
-        <input type="file" id="imageFile"><br><br>
-        <button id="submitBtn">게시글 올리기</button>
-    </div>
-
-    <hr>
-
-    <div>
-        <h3>전체 게시글 목록</h3>
-        <div id="postList">
-            <p>아직 등록된 게시글이 없습니다. 첫 글을 작성해 보세요!</p>
+    <header>
+        <div class="nav-container">
+            <div class="logo">MARKET FRONTIER <span>LAB</span></div>
+            <ul class="nav-menu">
+                <li class="menu-item">
+                    <a href="#">About Us</a>
+                    <ul class="dropdown">
+                        <li><a href="#">소개</a></li>
+                        <li><a href="#">조직도</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">커뮤니티</a>
+                    <ul class="dropdown">
+                        <li><a href="#">미디어관</a></li>
+                        <li><a href="#">피드</a></li>
+                        <li><a href="#">활동계획</a></li>
+                        <li><a href="#">활동기록</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">자료실</a>
+                    <ul class="dropdown">
+                        <li><a href="#">캘린더</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">가입안내</a>
+                    <ul class="dropdown">
+                        <li><a href="#">지원하기</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#">기타</a>
+                    <ul class="dropdown">
+                        <li><a href="https://career.jbnu.ac.kr/" target="_blank">전북대 취업진로과</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-    </div>
+    </header>
+
+    <section class="hero-section">
+        <h1>MARKET FRONTIER LAB</h1>
+        <p>"From Market Insight to Strategic Action"</p>
+    </section>
+
+    <main class="main-container">
+        
+        <div class="board-card">
+            <h2>✍️ 피드에 새 글 남기지 마케팅?</h2>
+            <div class="form-group">
+                <input type="text" id="title" placeholder="제목을 입력해 주세요">
+            </div>
+            <div class="form-group">
+                <textarea id="content" placeholder="오늘 마케팅 실무 프로젝트 활동은 어땠나요? 내용을 공유해 주세요!"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="file" id="imageFile" class="file-custom">
+            </div>
+            <button class="submit-btn" id="submitBtn">게시글 등록하기</button>
+        </div>
+
+        <div class="board-card">
+            <h2>📋 MFL 실시간 피드</h2>
+            <div id="postList">
+                <div class="post-item">
+                    <div class="post-title">MFL 1기 마케팅 실무 프로젝트 첫 회의!</div>
+                    <div class="post-content">오늘 전북대 근처에서 첫 인사 나누고 앞으로의 실무 세션 계획을 짰습니다. 다들 열정이 넘쳐서 이번 학기 결과물이 너무 기대되네요! 화이팅 🚀</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
 
 </body>
 </html>
