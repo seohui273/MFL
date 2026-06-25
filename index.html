@@ -9,19 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* 🎨 새롭게 리뉴얼된 MFL 컬러 시스템 (화이트 배경 기반) */
+        /* 🎨 MFL 화이트 모드 컬러 시스템 */
         :root {
-            --bg-clear: #ffffff;             /* 전체 하얀 배경 */
-            --point-navy: #0b0a1c;           /* 깊고 진한 미드나잇 네이비 (메인 포인트) */
-            --point-gold: #ebc244;           /* 세련된 골드 옐로우 */
-            --card-white: #f8f9fa;           /* 부드러운 밝은 그레이 카드 배경 */
-            --border-light: rgba(11, 10, 28, 0.08); /* 네이비 톤이 살짝 섞인 연한 테두리 */
-            --text-dark: #1a1926;            /* 가독성 좋은 어두운 글자색 */
-            --text-muted: #64748b;           /* 차분한 회색 서브 글자색 */
+            --bg-clear: #ffffff;             
+            --point-navy: #0b0a1c;           
+            --point-gold: #ebc244;           
+            --card-white: #f8f9fa;           
+            --border-light: rgba(11, 10, 28, 0.08); 
+            --text-dark: #1a1926;            
+            --text-muted: #64748b;           
             --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* 기본 레이아웃 및 폰트 세팅 */
+        /* 기본 레이아웃 세팅 */
         * {
             margin: 0;
             padding: 0;
@@ -37,7 +37,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, .logo {
+        h1, h2, h3, .logo, .main-logo {
             font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
         }
 
@@ -46,7 +46,7 @@
             color: inherit;
         }
 
-        /* 👑 1. 상단 네비게이션 바 (화이트 & 네비 포인트 조합) */
+        /* 👑 1. 상단 네비게이션 바 */
         header {
             background-color: rgba(255, 255, 255, 0.85);
             border-bottom: 1px solid var(--border-light);
@@ -57,7 +57,6 @@
             z-index: 1000;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            transition: var(--transition-smooth);
         }
 
         .nav-container {
@@ -75,14 +74,13 @@
             font-weight: 900;
             letter-spacing: 1.2px;
             color: var(--point-navy);
+            cursor: pointer;
         }
 
-        /* 🌟 지정한 단어(span)에만 노란색 포인트를 주는 스타일 */
         .logo span {
             color: var(--point-gold);
         }
 
-        /* 대메뉴 */
         .nav-menu {
             display: flex;
             list-style: none;
@@ -106,7 +104,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* 메뉴 하단 언더라인 */
         .menu-item > a::after {
             content: '';
             position: absolute;
@@ -120,16 +117,13 @@
             border-radius: 2px;
         }
 
-        .menu-item:hover > a {
-            color: var(--point-gold);
-        }
-
+        .menu-item:hover > a { color: var(--point-gold); }
         .menu-item:hover > a::after {
             transform: scaleX(1);
             background-color: var(--point-gold);
         }
 
-        /* 🔽 부드러운 드롭다운 서브메뉴 패널 */
+        /* 드롭다운 서브메뉴 */
         .dropdown {
             position: absolute;
             top: 75px;
@@ -169,190 +163,218 @@
             font-weight: 700;
         }
 
-        /* 🚀 2. 트렌디한 히어로 섹션 */
-        .hero-section {
-            max-width: 1200px;
-            margin: 170px auto 70px;
-            padding: 0 24px;
-            text-align: center;
-            animation: scaleUpIn 1s cubic-bezier(0.16, 1, 0.3, 1);
+        /* 🏠 2. 첫 화면 전용: 메인 홈 스페이스 (로고 중심) */
+        .page-content {
+            display: none; /* 기본적으로 숨겨두고 스크립트로 제어 */
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .hero-tag {
+        #homePage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 75px);
+            margin-top: 75px;
+            text-align: center;
+            padding: 0 24px;
+        }
+
+        /* 대형 브랜드 로고 데코레이션 */
+        .main-logo-box {
+            margin-bottom: 30px;
+        }
+
+        .main-logo {
+            font-size: 64px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            color: var(--point-navy);
+            line-height: 1.1;
+        }
+
+        .main-logo span {
+            color: var(--point-gold);
+        }
+
+        .home-tag {
             display: inline-block;
             background: rgba(11, 10, 28, 0.04);
             border: 1px solid rgba(11, 10, 28, 0.08);
             color: var(--point-navy);
-            padding: 6px 18px;
+            padding: 8px 24px;
             border-radius: 30px;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
             margin-bottom: 24px;
         }
 
-        .hero-section h1 {
-            font-size: 52px;
-            font-weight: 900;
-            color: var(--point-navy);
-            margin-bottom: 18px;
-            letter-spacing: -1px;
-            line-height: 1.1;
-        }
-
-        .hero-section p {
+        .home-sub {
             color: var(--text-muted);
-            font-size: 19px;
+            font-size: 20px;
             font-weight: 500;
         }
 
-        /* ✍️ 3. 메인 콘텐츠 카드 레이아웃 */
-        .main-container {
-            max-width: 860px;
-            margin: 0 auto 120px;
+        /* 🖼️ 3. 커뮤니티 -> 미디어관 전용 스페이스 */
+        #mediaPage {
+            max-width: 1200px;
+            margin: 120px auto 100px;
             padding: 0 24px;
         }
 
-        .board-card {
+        .page-header {
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--point-navy);
+            padding-bottom: 16px;
+        }
+
+        .page-header h2 {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--point-navy);
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-top: 6px;
+        }
+
+        /* 미디어 갤러리 그리드 레이아웃 */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+            margin-bottom: 6px;
+        }
+
+        .media-card {
+            background: var(--card-white);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(11, 10, 28, 0.08);
+            border-color: rgba(11, 10, 28, 0.15);
+        }
+
+        .media-img-wrapper {
+            width: 100%;
+            height: 230px;
+            background-color: #e2e8f0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .media-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .media-card:hover .media-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .media-body {
+            padding: 24px;
+        }
+
+        .media-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--point-navy);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .media-desc {
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .media-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            border-top: 1px solid rgba(11, 10, 28, 0.05);
+            padding-top: 14px;
+        }
+
+        /* 미디어관 하단 피드 작성 폼 */
+        .upload-box {
             background: var(--card-white);
             border: 1px solid var(--border-light);
             border-radius: 24px;
             padding: 36px;
-            box-shadow: 0 10px 30px rgba(11, 10, 28, 0.02);
-            margin-bottom: 40px;
-            transition: var(--transition-smooth);
+            margin-top: 60px;
         }
 
-        .board-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(11, 10, 28, 0.05);
-            border-color: rgba(11, 10, 28, 0.15);
-        }
-
-        .board-card h2 {
-            font-size: 22px;
+        .upload-box h3 {
+            font-size: 20px;
             font-weight: 800;
             color: var(--point-navy);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .board-card h2::before {
-            content: '';
-            display: inline-block;
-            width: 5px;
-            height: 22px;
-            background: var(--point-navy);
-            border-radius: 4px;
-        }
-
-        /* 입력 폼 스타일 */
-        .form-group {
             margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
         }
 
         .form-group input[type="text"], .form-group textarea {
             width: 100%;
             background-color: var(--bg-clear);
             border: 1px solid rgba(11, 10, 28, 0.12);
-            border-radius: 14px;
-            padding: 16px;
+            border-radius: 12px;
+            padding: 14px;
             color: var(--text-dark);
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 14px;
             transition: var(--transition-smooth);
         }
 
         .form-group input[type="text"]:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--point-navy);
-            box-shadow: 0 0 0 4px rgba(11, 10, 28, 0.05);
         }
 
         .form-group textarea {
-            height: 140px;
+            height: 100px;
             resize: none;
-            line-height: 1.7;
         }
 
-        .file-custom {
-            font-size: 14px;
-            color: var(--text-muted);
-            cursor: pointer;
-        }
-
-        /* 고급스러운 버튼 설계 */
         .submit-btn {
             background-color: var(--point-navy);
             color: var(--bg-clear);
             border: none;
-            border-radius: 14px;
-            padding: 18px 32px;
-            font-size: 16px;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
             transition: var(--transition-smooth);
-            box-shadow: 0 10px 25px rgba(11, 10, 28, 0.15);
         }
 
         .submit-btn:hover {
             background-color: #1a1936;
-            box-shadow: 0 15px 30px rgba(11, 10, 28, 0.25);
         }
 
-        /* 📋 4. 실시간 피드 아이템 리스트 디자인 */
-        .post-item {
-            background-color: var(--bg-clear);
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            transition: var(--transition-smooth);
-        }
-
-        .post-item:hover {
-            border-color: rgba(11, 10, 28, 0.2);
-            transform: scale(1.01);
-        }
-
-        .post-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 14px;
-        }
-
-        .post-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--point-navy);
-        }
-
-        .post-date {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        .post-content {
-            color: #334155;
-            font-size: 15px;
-            line-height: 1.75;
-        }
-
-        /* 부드러운 애니메이션 효과 */
-        @keyframes scaleUpIn {
-            from {
-                opacity: 0;
-                transform: scale(0.98) translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+        /* 애니메이션 효과 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -360,19 +382,19 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo">MARKET <span>FRONTIER</span> LAB</div>
+            <div class="logo" onclick="showPage('home')">MARKET <span>FRONTIER</span> LAB</div>
             <ul class="nav-menu">
                 <li class="menu-item">
-                    <a href="#">About Us</a>
+                    <a href="#" onclick="showPage('home')">About Us</a>
                     <ul class="dropdown">
-                        <li><a href="#">소개</a></li>
-                        <li><a href="#">조직도</a></li>
+                        <li><a href="#" onclick="showPage('home')">소개</a></li>
+                        <li><a href="#" onclick="showPage('home')">조직도</a></li>
                     </ul>
                 </li>
                 <li class="menu-item">
                     <a href="#">커뮤니티</a>
                     <ul class="dropdown">
-                        <li><a href="#">미디어관</a></li>
+                        <li><a href="#" onclick="showPage('media')">미디어관</a></li>
                         <li><a href="#">피드</a></li>
                         <li><a href="#">활동계획</a></li>
                         <li><a href="#">활동기록</a></li>
@@ -400,44 +422,69 @@
         </div>
     </header>
 
-    <section class="hero-section">
-        <span class="hero-tag">From Market Insight to Strategic Action</span>
-        <h1>MARKET FRONTIER LAB</h1>
-        <p>전북대학교 마케팅 실무 프로젝트 학회</p>
-    </section>
+    <div id="homePage" class="page-content" style="display: flex;">
+        <div class="main-logo-box">
+            <div class="home-tag">MARKETING STRATEGY GROUP</div>
+            <h1 class="main-logo">MARKET<br><span>FRONTIER</span><br>LAB</h1>
+        </div>
+        <p class="home-sub">전북대학교 마케팅 실무 프로젝트 동아리</p>
+    </div>
 
-    <main class="main-container">
-        
-        <div class="board-card">
-            <h2>MFL 실시간 피드 작성</h2>
-            <div class="form-group">
-                <input type="text" id="title" placeholder="게시글 제목을 입력하세요">
-            </div>
-            <div class="form-group">
-                <textarea id="content" placeholder="오늘 실무 프로젝트 세션 혹은 팀플 피드백을 자유롭게 남겨보세요!"></textarea>
-            </div>
-            <div class="form-group">
-                <input type="file" id="imageFile" class="file-custom">
-            </div>
-            <button class="submit-btn" id="submitBtn">피드 등록하기</button>
+    <div id="mediaPage" class="page-content">
+        <div class="page-header">
+            <h2>MFL 미디어관</h2>
+            <p>활동 기록입니다.</p>
         </div>
 
-        <div class="board-card">
-            <h2>MFL Feed Timeline</h2>
-            <div id="postList">
-                <div class="post-item">
-                    <div class="post-header">
-                        <div class="post-title">⚡ MFL 마케팅 실무 프로젝트 첫 킥오프 세션 완료!</div>
-                        <div class="post-date">방금 전</div>
-                    </div>
-                    <div class="post-content">
-                        오늘 전북대 캠퍼스에서 1기 학회원들과 첫 인사이트 워크숍을 진행했습니다! 시장 트렌드 분석 방법론을 다루었는데, 다들 날카로운 관점을 보여주셔서 이번 학기 기업 연계 실무 프로젝트 결과물이 진심으로 기대됩니다. 다들 최고예요 🚀
+        <div class="media-grid" id="galleryList">
+            <div class="media-card">
+                <div class="media-img-wrapper">
+                    <div style="width:100%; height:100%; background: linear-gradient(135deg, #0b0a1c 0%, #ebc244 100%); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700;">MFL 1기 킥오프 세션</div>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-title">⚡ MFL 마케팅 실무 프로젝트 첫 킥오프 세션 완료!</h3>
+                    <p class="media-desc">오늘 전북대 캠퍼스에서 1기 학회원들과 첫 인사이트 워크숍을 진행했습니다! 시장 트렌드 분석 방법론을 다루었는데 결과물이 기대됩니다.</p>
+                    <div class="media-footer">
+                        <span>MFL 운영진</span>
+                        <span>방금 전</span>
                     </div>
                 </div>
             </div>
         </div>
 
-    </main>
+        <div class="upload-box">
+            <h3>📸 새 활동 사진 및 피드 등록</h3>
+            <div class="form-group">
+                <input type="text" id="feedTitle" placeholder="활동 제목 또는 프로젝트명을 입력하세요">
+            </div>
+            <div class="form-group">
+                <textarea id="feedContent" placeholder="활동 사진에 대한 설명이나 팀플 피드백을 기록하세요."></textarea>
+            </div>
+            <div class="form-group">
+                <input type="file" id="feedFile">
+            </div>
+            <button class="submit-btn">미디어 피드 업로드하기</button>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // 모든 페이지 숨기기
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+
+            // 선택한 페이지만 노출하기
+            if (pageId === 'home') {
+                const home = document.getElementById('homePage');
+                home.style.display = 'flex';
+            } else if (pageId === 'media') {
+                const media = document.getElementById('mediaPage');
+                media.style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
 
 </body>
 </html>
