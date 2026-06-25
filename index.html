@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* 🎨 MFL 화이트 모드 컬러 시스템 */
+        /* 🎨 MFL 디자인 컬러 시스템 */
         :root {
             --bg-clear: #ffffff;             
             --point-navy: #0b0a1c;           
@@ -21,7 +21,6 @@
             --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* 기본 레이아웃 세팅 */
         * {
             margin: 0;
             padding: 0;
@@ -33,22 +32,15 @@
             color: var(--text-dark);
             font-family: 'Noto Sans KR', sans-serif;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, .logo, .main-logo {
-            font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
         /* 👑 1. 상단 네비게이션 바 */
         header {
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.9);
             border-bottom: 1px solid var(--border-light);
             position: fixed;
             top: 0;
@@ -56,7 +48,6 @@
             width: 100%;
             z-index: 1000;
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
         }
 
         .nav-container {
@@ -69,16 +60,10 @@
             padding: 0 24px;
         }
 
-        .logo {
-            font-size: 20px;
-            font-weight: 900;
-            letter-spacing: 1.2px;
-            color: var(--point-navy);
+        .logo-img {
+            height: 45px;
             cursor: pointer;
-        }
-
-        .logo span {
-            color: var(--point-gold);
+            object-fit: contain;
         }
 
         .nav-menu {
@@ -93,7 +78,7 @@
         }
 
         .menu-item > a {
-            padding: 0 24px;
+            padding: 0 20px;
             font-weight: 700;
             font-size: 15px;
             color: var(--text-dark);
@@ -104,26 +89,9 @@
             letter-spacing: 0.3px;
         }
 
-        .menu-item > a::after {
-            content: '';
-            position: absolute;
-            bottom: 20px;
-            left: 24px;
-            right: 24px;
-            height: 3px;
-            background-color: var(--point-navy);
-            transform: scaleX(0);
-            transition: var(--transition-smooth);
-            border-radius: 2px;
-        }
-
         .menu-item:hover > a { color: var(--point-gold); }
-        .menu-item:hover > a::after {
-            transform: scaleX(1);
-            background-color: var(--point-gold);
-        }
 
-        /* 드롭다운 서브메뉴 */
+        /* 드롭다운 메뉴 */
         .dropdown {
             position: absolute;
             top: 75px;
@@ -131,9 +99,9 @@
             transform: translateX(-50%) scale(0.95);
             background-color: var(--bg-clear);
             border: 1px solid var(--border-light);
-            border-radius: 14px;
+            border-radius: 12px;
             list-style: none;
-            min-width: 180px;
+            min-width: 160px;
             padding: 8px 0;
             opacity: 0;
             visibility: hidden;
@@ -148,7 +116,7 @@
         }
 
         .dropdown li a {
-            padding: 12px 24px;
+            padding: 12px 16px;
             display: block;
             font-size: 14px;
             font-weight: 500;
@@ -163,38 +131,32 @@
             font-weight: 700;
         }
 
-        /* 🏠 2. 첫 화면 전용: 메인 홈 스페이스 (로고 중심) */
-        .page-content {
-            display: none; /* 기본적으로 숨겨두고 스크립트로 제어 */
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        /* 메인 영역 공통 */
+        main {
+            flex: 1;
+            margin-top: 75px;
         }
 
+        .page-content {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* 🏠 2. 첫 화면 전용 (홈 스페이스) */
         #homePage {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: calc(100vh - 75px);
-            margin-top: 75px;
+            min-height: calc(100vh - 250px);
             text-align: center;
-            padding: 0 24px;
+            padding: 40px 24px;
         }
 
-        /* 대형 브랜드 로고 데코레이션 */
-        .main-logo-box {
-            margin-bottom: 30px;
-        }
-
-        .main-logo {
-            font-size: 64px;
-            font-weight: 900;
-            letter-spacing: -1.5px;
-            color: var(--point-navy);
-            line-height: 1.1;
-        }
-
-        .main-logo span {
-            color: var(--point-gold);
+        .main-hero-logo {
+            max-width: 280px;
+            margin-bottom: 24px;
+            object-fit: contain;
         }
 
         .home-tag {
@@ -202,178 +164,271 @@
             background: rgba(11, 10, 28, 0.04);
             border: 1px solid rgba(11, 10, 28, 0.08);
             color: var(--point-navy);
-            padding: 8px 24px;
+            padding: 6px 18px;
             border-radius: 30px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             letter-spacing: 1px;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
 
         .home-sub {
             color: var(--text-muted);
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 500;
         }
 
-        /* 🖼️ 3. 커뮤니티 -> 미디어관 전용 스페이스 */
-        #mediaPage {
-            max-width: 1200px;
-            margin: 120px auto 100px;
+        /* 🖼️ 3. 커뮤니티 -> 미디어관 공간 */
+        .container {
+            max-width: 1100px;
+            margin: 50px auto 80px;
             padding: 0 24px;
         }
 
         .page-header {
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             border-bottom: 2px solid var(--point-navy);
             padding-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
 
         .page-header h2 {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 900;
             color: var(--point-navy);
         }
 
-        .page-header p {
-            color: var(--text-muted);
-            font-size: 15px;
-            margin-top: 6px;
-        }
-
-        /* 미디어 갤러리 그리드 레이아웃 */
+        /* 미디어 그리드 */
         .media-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 30px;
-            margin-bottom: 6px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
         }
 
         .media-card {
             background: var(--card-white);
             border: 1px solid var(--border-light);
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
+            position: relative;
             transition: var(--transition-smooth);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.02);
         }
 
         .media-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(11, 10, 28, 0.08);
-            border-color: rgba(11, 10, 28, 0.15);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
         }
 
         .media-img-wrapper {
             width: 100%;
-            height: 230px;
+            height: 200px;
             background-color: #e2e8f0;
-            overflow: hidden;
-            position: relative;
         }
 
         .media-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition-smooth);
-        }
-
-        .media-card:hover .media-img-wrapper img {
-            transform: scale(1.05);
         }
 
         .media-body {
-            padding: 24px;
+            padding: 20px;
         }
 
         .media-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
-            color: var(--point-navy);
-            margin-bottom: 10px;
-            line-height: 1.4;
+            margin-bottom: 8px;
         }
 
         .media-desc {
             color: #475569;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 16px;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 12px;
         }
 
-        .media-footer {
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(220, 38, 38, 0.85);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            font-size: 11px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* 업로드 폼 박스 */
+        .upload-box {
+            background: #f8f9fa;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .upload-box input, .upload-box textarea {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .action-btn {
+            background: var(--point-navy);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 700;
+        }
+
+        /* 📅 4. 캘린더 시스템 스페이스 */
+        .calendar-control {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12px;
-            color: var(--text-muted);
-            font-weight: 500;
-            border-top: 1px solid rgba(11, 10, 28, 0.05);
-            padding-top: 14px;
-        }
-
-        /* 미디어관 하단 피드 작성 폼 */
-        .upload-box {
-            background: var(--card-white);
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
-            padding: 36px;
-            margin-top: 60px;
-        }
-
-        .upload-box h3 {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--point-navy);
             margin-bottom: 20px;
         }
 
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group input[type="text"], .form-group textarea {
-            width: 100%;
-            background-color: var(--bg-clear);
-            border: 1px solid rgba(11, 10, 28, 0.12);
-            border-radius: 12px;
-            padding: 14px;
-            color: var(--text-dark);
-            font-size: 14px;
-            transition: var(--transition-smooth);
-        }
-
-        .form-group input[type="text"]:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--point-navy);
-        }
-
-        .form-group textarea {
-            height: 100px;
-            resize: none;
-        }
-
-        .submit-btn {
-            background-color: var(--point-navy);
-            color: var(--bg-clear);
-            border: none;
-            border-radius: 12px;
-            padding: 16px;
-            font-size: 15px;
-            font-weight: 700;
+        .cal-btn {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 6px 14px;
+            border-radius: 6px;
             cursor: pointer;
-            width: 100%;
+            font-weight: 700;
+        }
+
+        .admin-toggle-btn {
+            background: #e2e8f0;
+            border: none;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .admin-active {
+            background: #ef4444 !important;
+            color: white !important;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            border-top: 1px solid #e2e8f0;
+            border-left: 1px solid #e2e8f0;
+        }
+
+        .calendar-header {
+            background: #f8f9fa;
+            font-weight: 700;
+            text-align: center;
+            padding: 10px 0;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .calendar-day {
+            min-height: 100px;
+            padding: 6px;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+            position: relative;
+        }
+
+        .calendar-day.empty {
+            background: #f8f9fa;
+        }
+
+        .day-num {
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .event-badge {
+            background: rgba(11, 10, 28, 0.08);
+            border-left: 3px solid var(--point-navy);
+            font-size: 11px;
+            padding: 2px 6px;
+            margin-top: 3px;
+            border-radius: 2px;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 📍 5. 고풍스러운 네비비&화이트 푸터 */
+        footer {
+            background-color: var(--point-navy);
+            color: #ffffff;
+            padding: 40px 24px;
+            margin-top: auto;
+            border-top: 4px solid var(--point-gold);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-info p {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .footer-brand {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-brand span {
+            color: var(--point-gold);
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 30px;
             transition: var(--transition-smooth);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        .submit-btn:hover {
-            background-color: #1a1936;
+        .footer-social a:hover {
+            background: var(--point-gold);
+            color: var(--point-navy);
+            transform: scale(1.05);
         }
 
-        /* 애니메이션 효과 */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -382,109 +437,297 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo" onclick="showPage('home')">MARKET <span>FRONTIER</span> LAB</div>
+            <img src="MFL.png" alt="MFL 로고" class="logo-img" onclick="showPage('home')">
             <ul class="nav-menu">
                 <li class="menu-item">
                     <a href="#" onclick="showPage('home')">About Us</a>
                     <ul class="dropdown">
-                        <li><a href="#" onclick="showPage('home')">소개</a></li>
-                        <li><a href="#" onclick="showPage('home')">조직도</a></li>
+                        <li><a href="#" onclick="alert('준비 중인 페이지입니다!')">소개</a></li>
+                        <li><a href="#" onclick="alert('준비 중인 페이지입니다!')">조직도</a></li>
                     </ul>
                 </li>
                 <li class="menu-item">
                     <a href="#">커뮤니티</a>
                     <ul class="dropdown">
                         <li><a href="#" onclick="showPage('media')">미디어관</a></li>
-                        <li><a href="#">피드</a></li>
-                        <li><a href="#">활동계획</a></li>
-                        <li><a href="#">활동기록</a></li>
+                        <li><a href="#" onclick="alert('준비 중인 페이지입니다!')">피드</a></li>
+                        <li><a href="#" onclick="alert('준비 중인 페이지입니다!')">활동계획</a></li>
+                        <li><a href="#" onclick="alert('준비 중인 페이지입니다!')">활동기록</a></li>
                     </ul>
                 </li>
                 <li class="menu-item">
                     <a href="#">자료실</a>
                     <ul class="dropdown">
-                        <li><a href="#">캘린더</a></li>
+                        <li><a href="#" onclick="showPage('calendar')">캘린더</a></li>
                     </ul>
                 </li>
                 <li class="menu-item">
                     <a href="#">가입안내</a>
                     <ul class="dropdown">
-                        <li><a href="#">지원하기</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item">
-                    <a href="#">기타</a>
-                    <ul class="dropdown">
-                        <li><a href="https://career.jbnu.ac.kr/" target="_blank">전북대 취업진로과</a></li>
+                        <li><a href="https://naver.me/5GcvckQL" target="_blank">지원하기</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </header>
 
-    <div id="homePage" class="page-content" style="display: flex;">
-        <div class="main-logo-box">
+    <main>
+        <div id="homePage" class="page-content" style="display: flex;">
+            <img src="MFL.png" alt="MFL 대형로고" class="main-hero-logo">
             <div class="home-tag">MARKETING STRATEGY GROUP</div>
-            <h1 class="main-logo">MARKET<br><span>FRONTIER</span><br>LAB</h1>
-        </div>
-        <p class="home-sub">전북대학교 마케팅 실무 프로젝트 동아리</p>
-    </div>
-
-    <div id="mediaPage" class="page-content">
-        <div class="page-header">
-            <h2>MFL 미디어관</h2>
-            <p>활동 기록입니다.</p>
+            <p class="home-sub">전북대학교 마케팅 실무 프로젝트 학회</p>
         </div>
 
-        <div class="media-grid" id="galleryList">
-            <div class="media-card">
-                <div class="media-img-wrapper">
-                    <div style="width:100%; height:100%; background: linear-gradient(135deg, #0b0a1c 0%, #ebc244 100%); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700;">MFL 1기 킥오프 세션</div>
-                </div>
-                <div class="media-body">
-                    <h3 class="media-title">⚡ MFL 마케팅 실무 프로젝트 첫 킥오프 세션 완료!</h3>
-                    <p class="media-desc">오늘 전북대 캠퍼스에서 1기 학회원들과 첫 인사이트 워크숍을 진행했습니다! 시장 트렌드 분석 방법론을 다루었는데 결과물이 기대됩니다.</p>
-                    <div class="media-footer">
-                        <span>MFL 운영진</span>
-                        <span>방금 전</span>
+        <div id="mediaPage" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <div>
+                        <h2>MFL 미디어관</h2>
+                        <p style="color:var(--text-muted); font-size:14px; margin-top:5px;">실시간으로 피드 게시글을 업로드하고 관리해보세요.</p>
                     </div>
                 </div>
+
+                <div class="media-grid" id="galleryContainer"></div>
+
+                <div class="upload-box">
+                    <h3 style="font-size:16px; font-weight:800; margin-bottom:15px; color:var(--point-navy);">📸 활동 사진 피드 등록</h3>
+                    <input type="text" id="mediaTitle" placeholder="제목을 입력하세요">
+                    <textarea id="mediaDesc" rows="3" placeholder="내용 설명을 적어주세요"></textarea>
+                    <input type="file" id="mediaFile" accept="image/*">
+                    <button class="action-btn" onclick="handleUpload()">미디어 피드 발행하기</button>
+                </div>
             </div>
         </div>
 
-        <div class="upload-box">
-            <h3>📸 새 활동 사진 및 피드 등록</h3>
-            <div class="form-group">
-                <input type="text" id="feedTitle" placeholder="활동 제목 또는 프로젝트명을 입력하세요">
+        <div id="calendarPage" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <div>
+                        <h2>MFL 학회 일정 캘린더</h2>
+                        <p style="color:var(--text-muted); font-size:14px; margin-top:5px;">학회의 공지 및 주요 프로젝트 일정 배치판입니다.</p>
+                    </div>
+                    <button id="adminBtn" class="admin-toggle-btn" onclick="toggleAdminMode()">🔒 관리자 모드 : OFF</button>
+                </div>
+
+                <div class="calendar-control">
+                    <button class="cal-btn" onclick="changeMonth(-1)">◀ 이전 달</button>
+                    <h3 id="calendarTitle" style="font-size:20px; font-weight:800; color:var(--point-navy);">2026년 3월</h3>
+                    <button class="cal-btn" onclick="changeMonth(1)">다음 달 ▶</button>
+                </div>
+
+                <div class="calendar-grid" id="calendarBody"></div>
             </div>
-            <div class="form-group">
-                <textarea id="feedContent" placeholder="활동 사진에 대한 설명이나 팀플 피드백을 기록하세요."></textarea>
-            </div>
-            <div class="form-group">
-                <input type="file" id="feedFile">
-            </div>
-            <button class="submit-btn">미디어 피드 업로드하기</button>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <div class="footer-brand">MARKET <span>FRONTIER</span> LAB</div>
+                <p>전북대학교 마케팅 실무 프로젝트 학회 (MFL)</p>
+                <p style="margin-top: 5px; font-size: 12px; color: #94a3b8;">© 2026 MARKET FRONTIER LAB. All Rights Reserved.</p>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/mfl.frontier?igsh=MXBrZXV4M3BoMHI3bQ%3D%3D&utm_source=qr" target="_blank">
+                    📸 MFL 공식 인스타그램 구경가기
+                </a>
+            </div>
+        </div>
+    </footer>
 
     <script>
+        // 화면 네비게이션 제어
         function showPage(pageId) {
-            // 모든 페이지 숨기기
-            document.querySelectorAll('.page-content').forEach(page => {
-                page.style.display = 'none';
-            });
+            document.querySelectorAll('.page-content').forEach(p => p.style.display = 'none');
+            const target = document.getElementById(pageId + 'Page');
+            if(pageId === 'home') target.style.display = 'flex';
+            else target.style.display = 'block';
+            window.scrollTo(0,0);
+        }
 
-            // 선택한 페이지만 노출하기
-            if (pageId === 'home') {
-                const home = document.getElementById('homePage');
-                home.style.display = 'flex';
-            } else if (pageId === 'media') {
-                const media = document.getElementById('mediaPage');
-                media.style.display = 'block';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+        /* -------------------------------------------
+           🖼️ [기능수정] 미디어관 실시간 시뮬레이션 업로드 시스템
+        ------------------------------------------- */
+        // 초기 목업 데이터 목록
+        let mediaData = [
+            { id: 1, title: "⚡ MFL 1기 공식 마케팅 프로젝트 첫 빌드업", desc: "학회원들과 시장 트렌드 조사 프레임워크를 공유하고 실무 제휴 과제 기획을 시작했습니다.", img: "MFL.png" }
+        ];
+
+        function renderMedia() {
+            const container = document.getElementById('galleryContainer');
+            container.innerHTML = '';
+            mediaData.forEach(item => {
+                container.innerHTML += `
+                    <div class="media-card">
+                        <button class="delete-btn" onclick="deleteMedia(${item.id})">삭제</button>
+                        <div class="media-img-wrapper">
+                            <img src="${item.img}" alt="활동사진">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-title">${item.title}</h4>
+                            <p class="media-desc">${item.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function handleUpload() {
+            const titleInput = document.getElementById('mediaTitle');
+            const descInput = document.getElementById('mediaDesc');
+            const fileInput = document.getElementById('mediaFile');
+
+            if(!titleInput.value || !descInput.value) {
+                alert("제목과 내용을 모두 채워주세요!");
+                return;
+            }
+
+            let imgUrl = "MFL.png"; // 기본값 이미지
+            if(fileInput.files && fileInput.files[0]) {
+                imgUrl = URL.createObjectURL(fileInput.files[0]); // 가상 임시 blob 링크 생성
+            }
+
+            const newPost = {
+                id: Date.now(),
+                title: titleInput.value,
+                desc: descInput.value,
+                img: imgUrl
+            };
+
+            mediaData.push(newPost);
+            renderMedia();
+
+            // 폼 초기화
+            titleInput.value = '';
+            descInput.value = '';
+            fileInput.value = '';
+            alert("활동 피드가 성공적으로 등록되었습니다!");
+        }
+
+        function deleteMedia(id) {
+            mediaData = mediaData.filter(item => item.id !== id);
+            renderMedia();
+        }
+
+        /* -------------------------------------------
+           📅 [신규추가] 2026년 3월 ~ 2027년 12월 가변 캘린더 시스템
+        ------------------------------------------- */
+        let currentYear = 2026;
+        let currentMonth = 3; // 3월부터 스타트
+        let isAdminMode = false;
+        
+        // 데이터 저장소 (날짜별 일정 배열 보관 키: "YYYY-MM-DD")
+        let calendarEvents = {
+            "2026-03-02": ["MFL 1기 신입 모집 개시"],
+            "2026-03-15": ["OT 워크숍 세션 예정"]
+        };
+
+        function toggleAdminMode() {
+            isAdminMode = !isAdminMode;
+            const btn = document.getElementById('adminBtn');
+            if(isAdminMode) {
+                btn.innerText = "🔓 관리자 모드 : ON (일정 편집 가능)";
+                btn.classList.add('admin-active');
+            } else {
+                btn.innerText = "🔒 관리자 모드 : OFF";
+                btn.classList.remove('admin-active');
             }
         }
-    </script>
 
+        function renderCalendar() {
+            document.getElementById('calendarTitle').innerText = `${currentYear}년 ${currentMonth}월`;
+            const body = document.getElementById('calendarBody');
+            body.innerHTML = '';
+
+            // 요일 헤더 생성
+            const weeks = ['일', '월', '화', '수', '목', '금', '토'];
+            weeks.forEach(w => {
+                body.innerHTML += `<div class="calendar-header">${w}</div>`;
+            });
+
+            // 1일의 시작 요일 구하기
+            const firstDayIndex = new Date(currentYear, currentMonth - 1, 1).getDay();
+            // 해당 월의 총 일수
+            const totalDays = new Date(currentYear, currentMonth, 0).getDate();
+
+            // 빈칸 채우기
+            for (let i = 0; i < firstDayIndex; i++) {
+                body.innerHTML += `<div class="calendar-day empty"></div>`;
+            }
+
+            // 날짜 칸 채우기
+            for (let day = 1; day <= totalDays; day++) {
+                const dateStr = `${currentYear}-${String(currentMonth).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+                const dayEvents = calendarEvents[dateStr] || [];
+
+                let eventsHtml = '';
+                dayEvents.forEach((ev, idx) => {
+                    eventsHtml += `<div class="event-badge" onclick="handleEventClick('${dateStr}', ${idx}, event)">📌 ${ev}</div>`;
+                });
+
+                body.innerHTML += `
+                    <div class="calendar-day" onclick="handleDayClick('${dateStr}')">
+                        <div class="day-num">${day}</div>
+                        <div class="events-wrap">${eventsHtml}</div>
+                    </div>
+                `;
+            }
+        }
+
+        function changeMonth(dir) {
+            currentMonth += dir;
+            if(currentMonth > 12) {
+                currentMonth = 1;
+                currentYear++;
+            } else if(currentMonth < 1) {
+                currentMonth = 12;
+                currentYear--;
+            }
+
+            // 범위 검증 (2026년 3월 이전 혹은 2028년 진입 차단)
+            if(currentYear < 2026 || (currentYear === 2026 && currentMonth < 3)) {
+                alert("일정 확인은 2026년 3월부터 가능합니다.");
+                currentYear = 2026; currentMonth = 3;
+            }
+            if(currentYear >= 2028) {
+                alert("2028년 이전 일정까지만 조회할 수 있습니다.");
+                currentYear = 2027; currentMonth = 12;
+            }
+
+            renderCalendar();
+        }
+
+        function handleDayClick(dateStr) {
+            if(!isAdminMode) return;
+            const newEvent = prompt(`[${dateStr}] 추가할 학회 일정을 입력하세요:`);
+            if(newEvent && newEvent.trim() !== '') {
+                if(!calendarEvents[dateStr]) calendarEvents[dateStr] = [];
+                calendarEvents[dateStr].push(newEvent.trim());
+                renderCalendar();
+            }
+        }
+
+        function handleEventClick(dateStr, idx, event) {
+            event.stopPropagation(); // 부모 클릭 전파 방지
+            if(!isAdminMode) {
+                alert(`일정 내용: ${calendarEvents[dateStr][idx]}`);
+                return;
+            }
+            
+            const menu = prompt(`일정 수정은 내용을 새로 입력하시고, 삭제를 원하시면 '삭제'라고 타이핑해 주세요.\n기존 내용: ${calendarEvents[dateStr][idx]}`);
+            if(menu === '삭제') {
+                calendarEvents[dateStr].splice(idx, 1);
+            } else if(menu && menu.trim() !== '') {
+                calendarEvents[dateStr][idx] = menu.trim();
+            }
+            renderCalendar();
+        }
+
+        // 초기 화면 실행 시 로드
+        window.onload = function() {
+            renderMedia();
+            renderCalendar();
+        };
+    </script>
 </body>
 </html>
