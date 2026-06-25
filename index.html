@@ -4,31 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MARKET FRONTIER LAB (MFL)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        /* 🎨 MFL 고유 브랜드 컬러 변수 정의 */
+        /* 🎨 새롭게 리뉴얼된 MFL 컬러 시스템 (화이트 배경 기반) */
         :root {
-            --bg-dark: #0b0925;
-            --point-gold: #ebc244;
-            --pure-white: #ffffff;
-            --card-surface: rgba(22, 19, 58, 0.6); /* 투명한 유리 느낌 */
-            --border-glow: rgba(235, 194, 68, 0.15);
-            --text-muted: #a0aec0;
+            --bg-clear: #ffffff;             /* 전체 하얀 배경 */
+            --point-navy: #0b0a1c;           /* 깊고 진한 미드나잇 네이비 (메인 포인트) */
+            --point-gold: #ebc244;           /* 세련된 골드 옐로우 */
+            --card-white: #f8f9fa;           /* 부드러운 밝은 그레이 카드 배경 */
+            --border-light: rgba(11, 10, 28, 0.08); /* 네이비 톤이 살짝 섞인 연한 테두리 */
+            --text-dark: #1a1926;            /* 가독성 좋은 어두운 글자색 */
+            --text-muted: #64748b;           /* 차분한 회색 서브 글자색 */
             --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* 기본 레이아웃 초기화 */
+        /* 기본 레이아웃 및 폰트 세팅 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Pretendard', -apple-system, sans-serif;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--pure-white);
+            background-color: var(--bg-clear);
+            color: var(--text-dark);
+            font-family: 'Noto Sans KR', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, .logo {
+            font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
         }
 
         a {
@@ -36,23 +46,10 @@
             color: inherit;
         }
 
-        /* 🪐 우주 같은 부드러운 배경 그라데이션 광채 효과 */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 50%;
-            height: 60%;
-            background: radial-gradient(circle, rgba(235, 194, 68, 0.08) 0%, rgba(11, 9, 37, 0) 70%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* 👑 1. 상단 네비게이션 바 (KUCC 스타일 고급형) */
+        /* 👑 1. 상단 네비게이션 바 (화이트 & 네비 포인트 조합) */
         header {
-            background-color: rgba(11, 9, 37, 0.75);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid var(--border-light);
             position: fixed;
             top: 0;
             left: 0;
@@ -75,17 +72,14 @@
 
         .logo {
             font-size: 20px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            color: var(--pure-white);
-            cursor: pointer;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+            color: var(--point-navy);
         }
 
+        /* 🌟 지정한 단어(span)에만 노란색 포인트를 주는 스타일 */
         .logo span {
             color: var(--point-gold);
-            background: linear-gradient(135deg, #fff7ad 0%, var(--point-gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         /* 대메뉴 */
@@ -102,27 +96,28 @@
 
         .menu-item > a {
             padding: 0 24px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 15px;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-dark);
             transition: var(--transition-smooth);
             height: 100%;
             display: flex;
             align-items: center;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
-        /* 메뉴 하단 언더라인 애니메이션 효과 */
+        /* 메뉴 하단 언더라인 */
         .menu-item > a::after {
             content: '';
             position: absolute;
             bottom: 20px;
             left: 24px;
             right: 24px;
-            height: 2px;
-            background-color: var(--point-gold);
+            height: 3px;
+            background-color: var(--point-navy);
             transform: scaleX(0);
             transition: var(--transition-smooth);
+            border-radius: 2px;
         }
 
         .menu-item:hover > a {
@@ -131,24 +126,25 @@
 
         .menu-item:hover > a::after {
             transform: scaleX(1);
+            background-color: var(--point-gold);
         }
 
-        /* 🔽 부드러운 드롭다운 서브메뉴 카드 패널 */
+        /* 🔽 부드러운 드롭다운 서브메뉴 패널 */
         .dropdown {
             position: absolute;
             top: 75px;
             left: 50%;
             transform: translateX(-50%) scale(0.95);
-            background-color: rgba(18, 15, 52, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+            background-color: var(--bg-clear);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
             list-style: none;
             min-width: 180px;
             padding: 8px 0;
             opacity: 0;
             visibility: hidden;
             transition: var(--transition-smooth);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 15px 35px rgba(11, 10, 28, 0.08);
         }
 
         .menu-item:hover .dropdown {
@@ -169,103 +165,101 @@
 
         .dropdown li a:hover {
             background-color: rgba(235, 194, 68, 0.08);
-            color: var(--point-gold);
-            padding-left: 28px;
-            padding-right: 20px;
+            color: var(--point-navy);
+            font-weight: 700;
         }
 
-        /* 🚀 2. 고급 히어로 섹션 (KUCC 감성 자아내기) */
+        /* 🚀 2. 트렌디한 히어로 섹션 */
         .hero-section {
             max-width: 1200px;
-            margin: 160px auto 80px;
+            margin: 170px auto 70px;
             padding: 0 24px;
             text-align: center;
-            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: scaleUpIn 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .hero-tag {
             display: inline-block;
-            background: rgba(235, 194, 68, 0.1);
-            border: 1px solid rgba(235, 194, 68, 0.25);
-            color: var(--point-gold);
-            padding: 6px 16px;
+            background: rgba(11, 10, 28, 0.04);
+            border: 1px solid rgba(11, 10, 28, 0.08);
+            color: var(--point-navy);
+            padding: 6px 18px;
             border-radius: 30px;
             font-size: 13px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             margin-bottom: 24px;
         }
 
         .hero-section h1 {
-            font-size: 48px;
+            font-size: 52px;
             font-weight: 900;
+            color: var(--point-navy);
             margin-bottom: 18px;
             letter-spacing: -1px;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .hero-section p {
             color: var(--text-muted);
-            font-size: 18px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
+            font-size: 19px;
+            font-weight: 500;
         }
 
-        /* ✍️ 3. 메인 콘텐츠 및 대시보드 레이아웃 */
+        /* ✍️ 3. 메인 콘텐츠 카드 레이아웃 */
         .main-container {
             max-width: 860px;
             margin: 0 auto 120px;
             padding: 0 24px;
         }
 
-        /* 글래스모피즘 보드 카드 */
         .board-card {
-            background: var(--card-surface);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: var(--card-white);
+            border: 1px solid var(--border-light);
             border-radius: 24px;
             padding: 36px;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-            margin-bottom: 48px;
+            box-shadow: 0 10px 30px rgba(11, 10, 28, 0.02);
+            margin-bottom: 40px;
             transition: var(--transition-smooth);
         }
 
         .board-card:hover {
-            border-color: var(--border-glow);
-            box-shadow: 0 30px 60px rgba(235, 194, 68, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(11, 10, 28, 0.05);
+            border-color: rgba(11, 10, 28, 0.15);
         }
 
         .board-card h2 {
             font-size: 22px;
             font-weight: 800;
+            color: var(--point-navy);
             margin-bottom: 24px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .board-card h2::before {
             content: '';
             display: inline-block;
-            width: 4px;
-            height: 20px;
-            background: linear-gradient(to bottom, var(--point-gold), #fff);
+            width: 5px;
+            height: 22px;
+            background: var(--point-navy);
             border-radius: 4px;
         }
 
-        /* 인풋 폼 스타일링 */
+        /* 입력 폼 스타일 */
         .form-group {
             margin-bottom: 20px;
         }
 
         .form-group input[type="text"], .form-group textarea {
             width: 100%;
-            background-color: rgba(11, 9, 37, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+            background-color: var(--bg-clear);
+            border: 1px solid rgba(11, 10, 28, 0.12);
+            border-radius: 14px;
             padding: 16px;
-            color: var(--pure-white);
+            color: var(--text-dark);
             font-size: 15px;
             font-weight: 500;
             transition: var(--transition-smooth);
@@ -273,21 +267,14 @@
 
         .form-group input[type="text"]:focus, .form-group textarea:focus {
             outline: none;
-            border-color: var(--point-gold);
-            background-color: rgba(11, 9, 37, 0.9);
-            box-shadow: 0 0 15px rgba(235, 194, 68, 0.1);
+            border-color: var(--point-navy);
+            box-shadow: 0 0 0 4px rgba(11, 10, 28, 0.05);
         }
 
         .form-group textarea {
             height: 140px;
             resize: none;
-            line-height: 1.6;
-        }
-
-        /* 파일 업로드 커스텀 버튼 디자인 */
-        .file-wrapper {
-            position: relative;
-            margin-bottom: 24px;
+            line-height: 1.7;
         }
 
         .file-custom {
@@ -296,34 +283,30 @@
             cursor: pointer;
         }
 
-        /* 등록 버튼 */
+        /* 고급스러운 버튼 설계 */
         .submit-btn {
-            background: linear-gradient(135deg, var(--point-gold) 0%, #d6af37 100%);
-            color: var(--bg-dark);
+            background-color: var(--point-navy);
+            color: var(--bg-clear);
             border: none;
-            border-radius: 12px;
-            padding: 16px 32px;
+            border-radius: 14px;
+            padding: 18px 32px;
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
             transition: var(--transition-smooth);
-            box-shadow: 0 8px 20px rgba(235, 194, 68, 0.15);
+            box-shadow: 0 10px 25px rgba(11, 10, 28, 0.15);
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(235, 194, 68, 0.3);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
+            background-color: #1a1936;
+            box-shadow: 0 15px 30px rgba(11, 10, 28, 0.25);
         }
 
         /* 📋 4. 실시간 피드 아이템 리스트 디자인 */
         .post-item {
-            background-color: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            background-color: var(--bg-clear);
+            border: 1px solid var(--border-light);
             border-radius: 16px;
             padding: 24px;
             margin-bottom: 20px;
@@ -331,43 +314,44 @@
         }
 
         .post-item:hover {
-            background-color: rgba(255, 255, 255, 0.04);
-            transform: translateX(4px);
+            border-color: rgba(11, 10, 28, 0.2);
+            transform: scale(1.01);
         }
 
         .post-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .post-title {
             font-size: 18px;
             font-weight: 700;
-            color: var(--point-gold);
+            color: var(--point-navy);
         }
 
         .post-date {
             font-size: 13px;
+            font-weight: 500;
             color: var(--text-muted);
         }
 
         .post-content {
-            color: #e2e8f0;
+            color: #334155;
             font-size: 15px;
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
-        /* 🎬 부드러운 시작 애니메이션 정의 */
-        @keyframes fadeInUp {
+        /* 부드러운 애니메이션 효과 */
+        @keyframes scaleUpIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: scale(0.98) translateY(10px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: scale(1) translateY(0);
             }
         }
     </style>
@@ -376,7 +360,7 @@
 
     <header>
         <div class="nav-container">
-            <div class="logo">MARKET FRONTIER <span>LAB</span></div>
+            <div class="logo">MARKET <span>FRONTIER</span> LAB</div>
             <ul class="nav-menu">
                 <li class="menu-item">
                     <a href="#">About Us</a>
@@ -432,7 +416,7 @@
             <div class="form-group">
                 <textarea id="content" placeholder="오늘 실무 프로젝트 세션 혹은 팀플 피드백을 자유롭게 남겨보세요!"></textarea>
             </div>
-            <div class="file-wrapper">
+            <div class="form-group">
                 <input type="file" id="imageFile" class="file-custom">
             </div>
             <button class="submit-btn" id="submitBtn">피드 등록하기</button>
