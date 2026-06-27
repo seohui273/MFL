@@ -2353,15 +2353,26 @@
             renderCalendar();
         }
 
-        window.onload = function () {
-            renderMedia();
-            renderBlogs();
-            renderCalendar();
-            // 첫 진입 시 리빌 상태 1차 점검
-            setTimeout(checkReveal, 200);
+        window.onload = function() {
+            // 미디어관 실시간 동기화
+            db.ref('media').orderByChild('timestamp').on('value', (snapshot) => {
+                renderMedia(snapshot);
+            });
+
+            // 블로그 피드 실시간 동기화
+            db.ref('blogs').on('value', (snapshot) => {
+                renderBlogs(snapshot);
+            });
+
+            // 달력 일정 구글 실시간 데이터베이스 전체 바인딩
+            db.ref('calendar').on('value', (snapshot) => {
+                const val = snapshot.val();
+                calendarEvents = val ? val : {};
+                renderCalendar();
+            });
+
             showPage('home');
         };
     </script>
 </body>
-
 </html>
