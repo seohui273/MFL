@@ -2003,15 +2003,27 @@
 
     <!-- 🕹️ 웹 제어 엔진 스크립트 -->
     <script>
-        // 로그인 인증 상태 관리 변수
+        // 🕹️ 웹 제어 엔진 스크립트 (최종 수정본)
+
+        // 1. 로그인 인증 상태 관리 변수
         let isLoggedIn = false;
         let pendingPageId = null;
 
-        // 싱글 페이지 애플리케이션 라우터 기능
+        // 2. 파이어베이스 없이도 화면을 채워줄 원래 기본 데이터 백업
+        let mediaData = [
+            { id: 1, title: "⚡ MFL 1기 마케팅 워크숍 개최", desc: "시장 인사이트 확보를 위한 STP 전략 프레임워크 실무 과제 기획을 성공적으로 개시했습니다.", img: "MFL.png" }
+        ];
+
+        let blogData = [
+            { id: 1, title: "퍼스널 브랜딩을 활용한 2026 트렌드 공략 전략", desc: "소비자의 핵심 페르소나를 타겟팅하여 브랜드 팬덤을 견고하게 빌드업하는 방법론에 대해 고찰해 보았습니다.", author: "최서희", url: "https://blog.naver.com" },
+            { id: 2, title: "데이터 분석에 기반한 신제품 시장 침투기", desc: "마케팅 퍼널과 전환율 데이터를 분석해 내고 실제 광고 효율성 검증을 통한 실무 전략입니다.", author: "김마케", url: "https://blog.naver.com" }
+        ];
+
+        // 3. 싱글 페이지 애플리케이션 라우터 기능
         function showPage(pageId) {
             const communityPages = ['media', 'feed', 'plan', 'history'];
 
-            // 로그인 검증 로직 추가 (커뮤니티 카테고리 진입 장벽)
+            // 로그인 검증 로직 (커뮤니티 카테고리 진입 장벽)
             if (communityPages.includes(pageId) && !isLoggedIn) {
                 pendingPageId = pageId;
                 openLoginModal();
@@ -2034,17 +2046,16 @@
 
             document.querySelectorAll('.page-content').forEach(p => p.style.display = 'none');
             const target = document.getElementById(pageId + 'Page');
-            if (pageId === 'home') target.style.display = 'block'; // 스크롤을 위해 block 처리
-            else target.style.display = 'block';
+            if (target) {
+                target.style.display = 'block';
+            }
             window.scrollTo(0, 0);
 
             // 페이지가 변경될 때도 스크롤 리빌 체크
             setTimeout(checkReveal, 100);
         }
 
-        /* -------------------------------------------
-           ✨ 스크롤 유동 동작 (Scroll Navigation) 및 애니메이션
-        ------------------------------------------- */
+        /* ✨ 스크롤 유동 동작 및 애니메이션 */
         function scrollToBridge() {
             const bridge = document.getElementById('mflBridgeSection');
             if (bridge) {
@@ -2057,7 +2068,7 @@
             reveals.forEach(reveal => {
                 const windowHeight = window.innerHeight;
                 const elementTop = reveal.getBoundingClientRect().top;
-                const elementVisible = 100; // 활성화될 여유 공간 값
+                const elementVisible = 100;
 
                 if (elementTop < windowHeight - elementVisible) {
                     reveal.classList.add('active');
@@ -2069,11 +2080,16 @@
 
         window.addEventListener('scroll', checkReveal);
 
-        /* -------------------------------------------
-           🔒 로그인 / 로그아웃 시스템 제어 엔진
-        ------------------------------------------- */
+        /* 🔒 로그인 / 로그아웃 시스템 제어 엔진 */
         function openLoginModal() {
             document.getElementById('loginModal').classList.add('active');
+        }
+
+        // 비밀번호 2026 테스트 계정 로그인
+        if (document.getElementById('loginPw')) {
+            document.getElementById('loginPw').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') submitLogin();
+            });
         }
 
         function closeLoginModal() {
@@ -2089,14 +2105,12 @@
                 isLoggedIn = true;
                 alert("인증에 성공했습니다! MFL 커뮤니티 공간에 오신 것을 환영합니다.");
 
-                // 네비게이션 로그인 버튼을 로그아웃 상태로 전환
                 document.getElementById('authNavItem').innerHTML = `
-                    <a onclick="handleLogout()" style="color: var(--text-muted);">로그아웃</a>
-                `;
+            <a onclick="handleLogout()" style="color: var(--text-muted);">로그아웃</a>
+        `;
 
                 closeLoginModal();
 
-                // 가려졌던 원래 페이지로 리다이렉션
                 if (pendingPageId) {
                     showPage(pendingPageId);
                 } else {
@@ -2111,42 +2125,34 @@
             isLoggedIn = false;
             alert("로그아웃 되었습니다. 안전한 정보 보호를 위해 홈 화면으로 이동합니다.");
 
-            // 로그인 상태로 복구
             document.getElementById('authNavItem').innerHTML = `
-                <a onclick="openLoginModal()" style="color: var(--point-gold);">로그인</a>
-            `;
+        <a onclick="openLoginModal()" style="color: var(--point-gold);">로그인</a>
+    `;
 
-            // 인풋 값 비우기
             document.getElementById('loginId').value = '';
             document.getElementById('loginPw').value = '';
 
             showPage('home');
         }
 
-        /* -------------------------------------------
-           🖼️ 미디어관 실시간 이미지 업로드 수리 엔진
-        ------------------------------------------- */
-        let mediaData = [
-            { id: 1, title: "⚡ MFL 1기 마케팅 워크숍 개최", desc: "시장 인사이트 확보를 위한 STP 전략 프레임워크 실무 과제 기획을 성공적으로 개시했습니다.", img: "MFL.png" }
-        ];
-
+        /* 🖼️ 미디어관 로컬 렌더링 엔진 */
         function renderMedia() {
             const container = document.getElementById('galleryContainer');
             if (!container) return;
             container.innerHTML = '';
             mediaData.forEach(item => {
                 container.innerHTML += `
-                    <div class="media-card">
-                        <button class="delete-btn" onclick="deleteMedia(${item.id})">삭제</button>
-                        <div class="media-img-wrapper">
-                            <img src="${item.img}" alt="활동 스냅샷" onerror="this.src='https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=600&q=80'">
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-card-title">${item.title}</h4>
-                            <p class="media-card-desc">${item.desc}</p>
-                        </div>
-                    </div>
-                `;
+            <div class="media-card">
+                <button class="delete-btn" onclick="deleteMedia(${item.id})">삭제</button>
+                <div class="media-img-wrapper">
+                    <img src="${item.img}" alt="활동 스냅샷" onerror="this.src='https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=600&q=80'">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-card-title">${item.title}</h4>
+                    <p class="media-card-desc">${item.desc}</p>
+                </div>
+            </div>
+        `;
             });
             checkReveal();
         }
@@ -2187,31 +2193,24 @@
             renderMedia();
         }
 
-        /* -------------------------------------------
-           📰 학회원 피드 (블로그 링크) 실시간 추가 엔진
-        ------------------------------------------- */
-        let blogData = [
-            { id: 1, title: "퍼스널 브랜딩을 활용한 2026 트렌드 공략 전략", desc: "소비자의 핵심 페르소나를 타겟팅하여 브랜드 팬덤을 견고하게 빌드업하는 방법론에 대해 고찰해 보았습니다.", author: "최서희", url: "https://blog.naver.com" },
-            { id: 2, title: "데이터 분석에 기반한 신제품 시장 침투기", desc: "마케팅 퍼널과 전환율 데이터를 분석해 내고 실제 광고 효율성 검증을 통한 실무 전략입니다.", author: "김마케", url: "https://blog.naver.com" }
-        ];
-
+        /* 📰 학회원 피드 로컬 렌더링 엔진 */
         function renderBlogs() {
             const container = document.getElementById('blogContainer');
             if (!container) return;
             container.innerHTML = '';
             blogData.forEach(item => {
                 container.innerHTML += `
-                    <div class="blog-card">
-                        <div>
-                            <h4 class="blog-title">${item.title}</h4>
-                            <p class="blog-desc">${item.desc}</p>
-                        </div>
-                        <div class="blog-footer">
-                            <span>작성자: ${item.author}</span>
-                            <a href="${item.url}" target="_blank" class="blog-link-btn">블로그 방문</a>
-                        </div>
-                    </div>
-                `;
+            <div class="blog-card">
+                <div>
+                    <h4 class="blog-title">${item.title}</h4>
+                    <p class="blog-desc">${item.desc}</p>
+                </div>
+                <div class="blog-footer">
+                    <span>작성자: ${item.author}</span>
+                    <a href="${item.url}" target="_blank" class="blog-link-btn">블로그 방문</a>
+                </div>
+            </div>
+        `;
             });
             checkReveal();
         }
@@ -2250,13 +2249,10 @@
             alert("학회원 포스팅 피드가 업로드되었습니다!");
         }
 
-        /* -------------------------------------------
-           📅 캘린더 연동 스케줄 시스템
-        ------------------------------------------- */
+        /* 📅 캘린더 로컬 및 로컬스토리지 연동 엔진 */
         let currentYear = 2026;
         let currentMonth = 3;
         let isAdminMode = false;
-
         let calendarEvents = {};
 
         function toggleAdminMode() {
@@ -2301,11 +2297,11 @@
                 });
 
                 body.innerHTML += `
-                    <div class="calendar-day" onclick="handleDayClick('${dateStr}')">
-                        <div class="day-num">${day}</div>
-                        <div class="events-wrap">${eventsHtml}</div>
-                    </div>
-                `;
+            <div class="calendar-day" onclick="handleDayClick('${dateStr}')">
+                <div class="day-num">${day}</div>
+                <div class="events-wrap">${eventsHtml}</div>
+            </div>
+        `;
             }
             checkReveal();
         }
@@ -2338,7 +2334,7 @@
                 if (!calendarEvents[dateStr]) calendarEvents[dateStr] = [];
                 calendarEvents[dateStr].push(newEvent.trim());
 
-                // 💡 브라우저 로컬 저장소에 저장
+                // 브라우저 로컬 저장소 동기화
                 localStorage.setItem('mfl_calendar', JSON.stringify(calendarEvents));
                 renderCalendar();
             }
@@ -2357,37 +2353,24 @@
                 calendarEvents[dateStr][idx] = action.trim();
             }
 
-            // 💡 브라우저 로컬 저장소에 저장
+            // 브라우저 로컬 저장소 동기화
             localStorage.setItem('mfl_calendar', JSON.stringify(calendarEvents));
             renderCalendar();
         }
 
+        // 4. 초기화 핵심 구동 엔진 (파이어베이스 종속성 완전 제거)
         window.onload = function () {
-            // 1. [달력 일정] 로컬 스토리지에서 데이터 안전하게 불러오기
+            // 달력 데이터 로드
             const localData = localStorage.getItem('mfl_calendar');
             calendarEvents = localData ? JSON.parse(localData) : {};
 
-            // 2. 파이어베이스 서버 연결 코드를 완전히 우회하고, 화면을 강제로 그리게 만듭니다.
-            // 기존에 하드코딩해두신 기본 HTML 템플릿과 데이터들이 에러 없이 그대로 출력됩니다.
-            try {
-                renderCalendar();
-            } catch (e) {
-                console.error("달력 렌더링 에러:", e);
-            }
+            // 화면 그리기
+            renderCalendar();
+            renderMedia();
+            renderBlogs();
 
-            // 3. 파이어베이스 snapshot.forEach 에러를 완벽하게 차단하는 방어 코드
-            const dummySnapshot = {
-                val: function () { return null; },
-                forEach: function () { /* 에러 없이 통과 */ }
-            };
-
-            try { if (typeof renderMedia === 'function') renderMedia(dummySnapshot); } catch (e) { }
-            try { if (typeof renderBlogs === 'function') renderBlogs(dummySnapshot); } catch (e) { }
-
-            // 4. [핵심] 모든 에러 요소를 통과하고 첫 화면(홈)을 강제로 활성화
-            if (typeof showPage === 'function') {
-                showPage('home');
-            }
+            // 첫 페이지로 홈 화면 표출
+            showPage('home');
         };
     </script>
 </body>
