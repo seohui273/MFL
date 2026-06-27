@@ -7,8 +7,10 @@
     <title>MARKET FRONTIER LAB (MFL)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+
     <style>
         /* 🎨 MFL 고유 화이트 & 시크 네이비 브랜딩 컬러 변수 */
         :root {
@@ -39,7 +41,13 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4, h5, .logo, .main-logo {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        .logo,
+        .main-logo {
             font-family: 'Montserrat', 'Noto Sans KR', sans-serif;
         }
 
@@ -587,7 +595,8 @@
             padding: 30px;
         }
 
-        .upload-box input, .upload-box textarea {
+        .upload-box input,
+        .upload-box textarea {
             width: 100%;
             margin-bottom: 14px;
             padding: 12px;
@@ -1279,35 +1288,80 @@
         }
 
         @media (max-width: 768px) {
-            .apply-details-grid { grid-template-columns: 1fr; }
-            .dept-card-group { grid-template-columns: 1fr; }
-            .apply-timeline { grid-template-columns: 1fr 1fr; }
+            .apply-details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dept-card-group {
+                grid-template-columns: 1fr;
+            }
+
+            .apply-timeline {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 480px) {
-            .apply-timeline { grid-template-columns: 1fr; }
+            .apply-timeline {
+                grid-template-columns: 1fr;
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes heroCardReveal {
-            from { opacity: 0; transform: scale(0.96) translateY(30px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         @keyframes float-slow {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(1deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
-            40% { transform: translate(-50%, -10px); }
-            60% { transform: translate(-50%, -5px); }
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translate(-50%, 0);
+            }
+
+            40% {
+                transform: translate(-50%, -10px);
+            }
+
+            60% {
+                transform: translate(-50%, -5px);
+            }
         }
     </style>
 </head>
@@ -1316,7 +1370,8 @@
 
     <header>
         <div class="nav-container">
-            <img src="MFL.png" alt="MFL 로고" class="logo-img" onclick="showPage('home')" onerror="this.style.display='none'">
+            <img src="MFL.png" alt="MFL 로고" class="logo-img" onclick="showPage('home')"
+                onerror="this.style.display='none'">
             <ul class="nav-menu">
                 <li class="menu-item">
                     <a>About Us</a>
@@ -1365,7 +1420,9 @@
                 </div>
                 <div class="scroll-down-hint" onclick="scrollToBridge()">
                     <span>Scroll Down</span>
-                    <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" /></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+                    </svg>
                 </div>
             </section>
 
@@ -1373,7 +1430,8 @@
                 <div class="bridge-container reveal">
                     <h3 class="bridge-quote">이론의 단계를 넘어, <span>시장의 실전</span>으로 증명</h3>
                     <p class="bridge-desc">
-                        단순한 개념 습득은 MFL의 목표가 아닙니다.<br>초기 전략 기획부터 실행, 그리고 최종 성과 분석까지 비즈니스의 전 과정을 팀원들이 직접 총괄하며,<br> 현업에서 곧바로 통하는 진짜 실무 감각과 데이터 기반의 포트폴리오를 구축합니다.
+                        단순한 개념 습득은 MFL의 목표가 아닙니다.<br>초기 전략 기획부터 실행, 그리고 최종 성과 분석까지 비즈니스의 전 과정을 팀원들이 직접 총괄하며,<br> 현업에서
+                        곧바로 통하는 진짜 실무 감각과 데이터 기반의 포트폴리오를 구축합니다.
                     </p>
                     <div class="stats-board">
                         <div class="stat-card">
@@ -1399,7 +1457,8 @@
                 <div class="page-header">
                     <div>
                         <h2 style="font-size: 26px; font-weight:900; color: var(--point-navy);">MFL 활동 기록</h2>
-                        <p style="font-size:14px; color:var(--text-muted); margin-top:5px;">우리가 완성한 마케팅 성과 및 의미 있는 프로젝트들의 연도별 기록입니다.</p>
+                        <p style="font-size:14px; color:var(--text-muted); margin-top:5px;">우리가 완성한 마케팅 성과 및 의미 있는
+                            프로젝트들의 연도별 기록입니다.</p>
                     </div>
                 </div>
                 <div class="timeline-container">
@@ -1408,7 +1467,8 @@
                         <div class="timeline-card">
                             <div class="timeline-date">2026.03</div>
                             <h4 class="timeline-title">전북대학교 MARKET FRONTIER LAB 동아리 창설</h4>
-                            <p class="timeline-desc">데이터 기반의 날카로운 전략 수립과 시장을 꿰뚫는 통찰력을 바탕으로, <br>실전 마케팅의 새로운 패러다임을 이끌어갈 전북대학교 MFL 1기 창설</p>
+                            <p class="timeline-desc">데이터 기반의 날카로운 전략 수립과 시장을 꿰뚫는 통찰력을 바탕으로, <br>실전 마케팅의 새로운 패러다임을 이끌어갈
+                                전북대학교 MFL 1기 창설</p>
                         </div>
                     </div>
                     <div class="timeline-block">
@@ -1416,7 +1476,8 @@
                         <div class="timeline-card">
                             <div class="timeline-date">2026.03</div>
                             <h4 class="timeline-title">MFL 공식 소통 채널 개설 안내</h4>
-                            <p class="timeline-desc">MFL 1기의 활동 소식을 전하고, 예비 동아리원 및 학우 여러분과 더욱 밀접하게 소통하기 위해 공식 인스타그램 계정과 카카오톡 오픈채팅방을 개설하였습니다.</p>
+                            <p class="timeline-desc">MFL 1기의 활동 소식을 전하고, 예비 동아리원 및 학우 여러분과 더욱 밀접하게 소통하기 위해 공식 인스타그램 계정과
+                                카카오톡 오픈채팅방을 개설하였습니다.</p>
                         </div>
                     </div>
                     <div class="timeline-block">
@@ -1432,31 +1493,38 @@
                         <div class="timeline-card">
                             <div class="timeline-date">2026.05.06 - 05.08</div>
                             <h4 class="timeline-title">대동제 플리마켓 부스 기획 및 운영</h4>
-                            <p class="timeline-desc">전북대학교 대동제 축제 기간 동안 직접 부스를 기획, 브랜딩, 영업, 분석까지 소화하며 실전 비즈니스 마케팅을 경험했습니다.</p>
+                            <p class="timeline-desc">전북대학교 대동제 축제 기간 동안 직접 부스를 기획, 브랜딩, 영업, 분석까지 소화하며 실전 비즈니스 마케팅을
+                                경험했습니다.</p>
                         </div>
                     </div>
                     <div class="timeline-block">
                         <div class="timeline-icon" style="background-color: var(--point-gold);"></div>
                         <div class="timeline-card" style="border-left: 4.5px solid var(--point-gold);">
-                            <div class="timeline-date" style="color: var(--point-navy); font-weight: 900;">2026 상반기</div>
+                            <div class="timeline-date" style="color: var(--point-navy); font-weight: 900;">2026 상반기
+                            </div>
                             <h4 class="timeline-title">상반기 집중 실무 역량 강화 기간</h4>
-                            <p class="timeline-desc" style="font-weight: 700; margin-bottom: 8px;">2026 상반기, MFL 1기의 실전 마케팅 직무 역량을 고도화하기 위한 활동</p>
+                            <p class="timeline-desc" style="font-weight: 700; margin-bottom: 8px;">2026 상반기, MFL 1기의 실전
+                                마케팅 직무 역량을 고도화하기 위한 활동</p>
                             <ul class="timeline-sub-list">
                                 <li><strong>기업 탐방 및 현직자 면담:</strong> 우리은행, KOTRA, 서울 창업허브 공덕 등 현장 인사이트를 구축했습니다.</li>
                                 <li><strong>기업 분석 및 심화형 설문·통계 분석:</strong> 통계 분석 툴을 활용한 정량 분석 기법을 학습했습니다.</li>
                                 <li><strong>CEDA 정기 대면 토론 세션:</strong> 마케팅 쟁점에 대해 논리적이고 정교한 비판적 토론을 수행했습니다.</li>
                                 <li><strong>OPIC 글로벌 스피킹 역량 스터디:</strong> 외국어 말하기 자율 스터디 그룹을 운영하며 기본 스펙을 다졌습니다.</li>
-                                <li><strong>가상기업 브랜드 전략 설계:</strong> 가상의 스타트업 모델 기업 포지셔닝부터 마케팅 믹스 전략 수립까지 포괄하는 프로젝트를 성료했습니다.</li>
+                                <li><strong>가상기업 브랜드 전략 설계:</strong> 가상의 스타트업 모델 기업 포지셔닝부터 마케팅 믹스 전략 수립까지 포괄하는 프로젝트를
+                                    성료했습니다.</li>
                             </ul>
                         </div>
                     </div>
                     <div class="timeline-block">
                         <div class="timeline-icon" style="background-color: var(--point-gold);"></div>
-                        <div class="timeline-card" style="border: 2px solid var(--point-gold); background-color: rgba(235, 194, 68, 0.04);">
-                            <div class="timeline-date" style="color: var(--point-navy); font-weight: 900;">2026 상반기 결산</div>
+                        <div class="timeline-card"
+                            style="border: 2px solid var(--point-gold); background-color: rgba(235, 194, 68, 0.04);">
+                            <div class="timeline-date" style="color: var(--point-navy); font-weight: 900;">2026 상반기 결산
+                            </div>
                             <h4 class="timeline-title">🏆 MFL [상반기 취업동아리 우수상] 수상</h4>
                             <p class="timeline-desc" style="line-height: 1.8; color: #2d3748;">
-                                MFL 1기는 다채로운 실무 중심 커리큘럼을 훌륭하게 완주했습니다.<br> 뛰어난 성과와 활발한 연계 프로젝트 결과물을 높게 평가받아, 전북대학교 <strong>[상반기 취업동아리 우수상]</strong>을 수상하는 영예를 안았습니다!
+                                MFL 1기는 다채로운 실무 중심 커리큘럼을 훌륭하게 완주했습니다.<br> 뛰어난 성과와 활발한 연계 프로젝트 결과물을 높게 평가받아, 전북대학교
+                                <strong>[상반기 취업동아리 우수상]</strong>을 수상하는 영예를 안았습니다!
                             </p>
                         </div>
                     </div>
@@ -1483,7 +1551,8 @@
                 <div class="about-intro-grid reveal">
                     <h3>인사이트를 넘어,<br>전략적 액션을 도출하는 취업동아리</h3>
                     <p>
-                        MARKET FRONTIER LAB(MFL)은 다변화하는 비즈니스 환경 속에서 날카로운 시장 인사이트를 구축하고, 이를 실무 전략적 성과로 직접 설계해 내는 전북대학교 마케팅 전문 실무 학회입니다.<br><br>
+                        MARKET FRONTIER LAB(MFL)은 다변화하는 비즈니스 환경 속에서 날카로운 시장 인사이트를 구축하고, 이를 실무 전략적 성과로 직접 설계해 내는 전북대학교
+                        마케팅 전문 실무 학회입니다.<br><br>
                         우리는 단순한 가상 이론 연구를 넘어, 실제 기업 연계 프로젝트 및 브랜딩 컴피티션을 수행하며 시장의 프론티어를 이끌어갈 비즈니스 인재를 배출합니다.
                     </p>
                 </div>
@@ -1491,17 +1560,20 @@
                     <div class="value-card">
                         <div class="value-num">01</div>
                         <div class="value-title">Market Insight</div>
-                        <p style="color:var(--text-muted); font-size:14px; line-height:1.6;">철저한 데이터 분석과 트렌드 리서치를 기반으로 한 거시적/미시적 시장 해석 능력을 배양합니다.</p>
+                        <p style="color:var(--text-muted); font-size:14px; line-height:1.6;">철저한 데이터 분석과 트렌드 리서치를 기반으로 한
+                            거시적/미시적 시장 해석 능력을 배양합니다.</p>
                     </div>
                     <div class="value-card">
                         <div class="value-num">02</div>
                         <div class="value-title">Strategic Action</div>
-                        <p style="color:var(--text-muted); font-size:14px; line-height:1.6;">도출된 통찰을 실무 관점에서 실현 가능한 비즈니스 전략과 브랜드 캠페인으로 현실화합니다.</p>
+                        <p style="color:var(--text-muted); font-size:14px; line-height:1.6;">도출된 통찰을 실무 관점에서 실현 가능한 비즈니스
+                            전략과 브랜드 캠페인으로 현실화합니다.</p>
                     </div>
                     <div class="value-card">
                         <div class="value-num">03</div>
                         <div class="value-title">Frontier Network</div>
-                        <p style="color:var(--text-muted); font-size:14px; line-height:1.6;">선후배 간의 끈끈한 피드백 루프와 실무 연계 인프라를 구축하여 동반 성장을 이룩합니다.</p>
+                        <p style="color:var(--text-muted); font-size:14px; line-height:1.6;">선후배 간의 끈끈한 피드백 루프와 실무 연계
+                            인프라를 구축하여 동반 성장을 이룩합니다.</p>
                     </div>
                 </div>
             </div>
@@ -1556,7 +1628,8 @@
                     </div>
                 </div>
             </div>
-        </div> <div id="mediaPage" class="page-content">
+        </div>
+        <div id="mediaPage" class="page-content">
             <div class="container">
                 <div class="page-header reveal">
                     <div>
@@ -1566,7 +1639,8 @@
                 </div>
                 <div class="media-grid reveal" id="galleryContainer"></div>
                 <div class="upload-box reveal">
-                    <h3 style="font-size:16px; font-weight:800; margin-bottom:15px; color:var(--point-navy);">📸 활동 현장 피드 발행</h3>
+                    <h3 style="font-size:16px; font-weight:800; margin-bottom:15px; color:var(--point-navy);">📸 활동 현장
+                        피드 발행</h3>
                     <input type="text" id="mediaTitle" placeholder="프로젝트명 또는 활동 제목을 입력하세요">
                     <textarea id="mediaDesc" rows="3" placeholder="이번 마케팅 세션의 핵심 인사이트 및 활동 요약을 기록해 주세요."></textarea>
                     <input type="file" id="mediaFile" accept="image/*">
@@ -1585,7 +1659,8 @@
                 </div>
                 <div class="blog-grid reveal" id="blogContainer"></div>
                 <div class="upload-box reveal">
-                    <h3 style="font-size:16px; font-weight:800; margin-bottom:15px; color:var(--point-navy);">🔗 새 블로그 피드 링크 연동</h3>
+                    <h3 style="font-size:16px; font-weight:800; margin-bottom:15px; color:var(--point-navy);">🔗 새 블로그
+                        피드 링크 연동</h3>
                     <input type="text" id="blogTitle" placeholder="블로그 포스팅 제목을 적어주세요">
                     <input type="text" id="blogAuthor" placeholder="작성자 성함을 입력해 주세요 (예: 최서희)">
                     <textarea id="blogDesc" rows="3" placeholder="블로그 포스팅의 주요 요약을 한두 줄로 입력해 주세요."></textarea>
@@ -1649,7 +1724,8 @@
                         <div class="timeline-card">
                             <div class="timeline-date">Curriculum 06</div>
                             <h4 class="timeline-title">📦 실전 스마트 SCM 공급망 최적화 프로젝트</h4>
-                            <p class="timeline-desc">시뮬레이션을 통해 채찍효과(Bullwhip Effect)를 직접 진단하고, 제조부터 소매까지의 전 과정에서 실시간 데이터 공유와 재고 최적화를 실현하는 실전 SCM 운영 능력을 기릅니다.</p>
+                            <p class="timeline-desc">시뮬레이션을 통해 채찍효과(Bullwhip Effect)를 직접 진단하고, 제조부터 소매까지의 전 과정에서 실시간 데이터
+                                공유와 재고 최적화를 실현하는 실전 SCM 운영 능력을 기릅니다.</p>
                         </div>
                     </div>
                     <div class="timeline-block">
@@ -1670,7 +1746,8 @@
                     </div>
                 </div>
             </div>
-        </div> <div id="calendarPage" class="page-content">
+        </div>
+        <div id="calendarPage" class="page-content">
             <div class="container">
                 <div class="page-header reveal">
                     <div>
@@ -1681,7 +1758,8 @@
                 </div>
                 <div class="calendar-control reveal">
                     <button class="cal-btn" onclick="changeMonth(-1)">◀ 이전 달</button>
-                    <h3 id="calendarTitle" style="font-size:20px; font-weight:800; color:var(--point-navy);">2026년 3월</h3>
+                    <h3 id="calendarTitle" style="font-size:20px; font-weight:800; color:var(--point-navy);">2026년 3월
+                    </h3>
                     <button class="cal-btn" onclick="changeMonth(1)">다음 달 ▶</button>
                 </div>
                 <div class="calendar-grid reveal" id="calendarBody"></div>
@@ -1763,7 +1841,8 @@
                 </div>
                 <div class="apply-action-zone reveal">
                     <p>모집 요강 및 세부 일정을 모두 확인하셨나요? 아래의 버튼을 누르시면 네이버 공식 서류 제출 폼으로 이동합니다.</p>
-                    <a href="https://naver.me/5GcvckQL" target="_blank" class="cta-apply-btn">MFL 1기 공식 지원서 양식 바로가기 🚀</a>
+                    <a href="https://naver.me/5GcvckQL" target="_blank" class="cta-apply-btn">MFL 1기 공식 지원서 양식 바로가기
+                        🚀</a>
                 </div>
             </div>
         </div>
@@ -1801,7 +1880,8 @@
                 <p style="margin-top: 3px; font-size: 11px; color: #94a3b8;">전북 전주시 덕진구 백제대로 567, 전북대학교</p>
             </div>
             <div class="footer-social">
-                <a href="https://www.instagram.com/mfl.frontier?igsh=MXBrZXV4M3BoMHI3bQ%3D%3D&utm_source=qr" target="_blank">
+                <a href="https://www.instagram.com/mfl.frontier?igsh=MXBrZXV4M3BoMHI3bQ%3D%3D&utm_source=qr"
+                    target="_blank">
                     <span>MFL</span> 공식 인스타그램
                 </a>
             </div>
@@ -1962,11 +2042,32 @@
         let calendarEvents = {};
 
         function toggleAdminMode() {
-            isAdminMode = !isAdminMode;
-            const btn = document.getElementById('adminBtn');
-            btn.innerText = isAdminMode ? "🔓 관리자 모드 : ON (일정 편집 가능)" : "🔒 관리자 모드 : OFF";
-            if (isAdminMode) btn.classList.add('admin-active');
-            else btn.classList.remove('admin-active');
+            // 1. 이미 관리자 모드가 켜져 있다면, 누르는 순간 바로 꺼지도록 처리
+            if (isAdminMode) {
+                isAdminMode = false;
+                const btn = document.getElementById('adminBtn');
+                btn.innerText = "🔒 관리자 모드";
+                btn.classList.remove('admin-active');
+                alert("관리자 모드가 해제되었습니다.");
+                renderCalendar();
+                return;
+            }
+
+            // 2. 관리자 모드가 꺼져 있을 때 누르면 비밀번호 입력창(prompt) 띄우기
+            const pwInput = prompt("MFL 관리자 번호를 입력하세요:");
+
+            // 3. 비밀번호 검증 (로그인과 동일하게 2026으로 설정)
+            if (pwInput === '2026') {
+                isAdminMode = true;
+                const btn = document.getElementById('adminBtn');
+                btn.innerText = "🔓 관리자 모드 : ON ";
+                btn.classList.add('admin-active');
+                alert("관리자 인증에 성공했습니다!");
+                renderCalendar(); // 일정 클릭 권한 활성화를 위해 달력 새로고침
+            } else if (pwInput !== null) {
+                // 취소 버튼을 누른 게 아니라 틀린 번호를 입력했을 때만 경고창
+                alert("비밀번호가 일치하지 않습니다.");
+            }
         }
 
         function renderCalendar() {
@@ -2018,7 +2119,7 @@
             renderCalendar();
         }
 
-        window.onload = function() {
+        window.onload = function () {
             const localData = localStorage.getItem('mfl_calendar');
             calendarEvents = localData ? JSON.parse(localData) : {};
             renderCalendar();
@@ -2028,4 +2129,5 @@
         };
     </script>
 </body>
+
 </html>
