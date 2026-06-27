@@ -12,6 +12,10 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
         rel="stylesheet">
 
+ <!-- ⚡ 구글 파이어베이스(Firebase) Core 및 실시간 DB 연동 스크립트 복구 -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    
     <style>
         /* 🎨 MFL 고유 화이트 & 시크 네이비 브랜딩 컬러 변수 */
         :root {
@@ -1749,7 +1753,7 @@
                     <input type="text" id="blogTitle" placeholder="블로그 포스팅 제목을 적어주세요">
                     <input type="text" id="blogAuthor" placeholder="작성자 성함을 입력해 주세요 (예: 최서희)">
                     <textarea id="blogDesc" rows="3" placeholder="블로그 포스팅의 주요 요약을 한두 줄로 입력해 주세요."></textarea>
-                    <input type="text" id="blogUrl" placeholder="네이버 블로그, 벨로그 등의 실제 포스팅 URL 주소를 입력하세요">
+                    <input type="text" id="blogUrl" placeholder="네이버 블로그, 벨로그 등의 실제 포스팅  주소를 입력하세요">
                     <button class="action-btn" onclick="handleBlogUpload()">블로그 피드 추가하기</button>
                 </div>
             </div>
