@@ -617,6 +617,40 @@
             color: #dc2626;
         }
 
+        .upload-box {
+            background: #f8f9fa;
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            padding: 30px;
+        }
+
+        .upload-box input,
+        .upload-box textarea {
+            width: 100%;
+            margin-bottom: 14px;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .action-btn {
+            background: var(--point-navy);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 700;
+            font-size: 15px;
+            transition: var(--transition-smooth);
+        }
+
+        .action-btn:hover {
+            background-color: #1a1936;
+        }
+
         /* 📝 9. 타임라인 구조 (활동기록 & 활동계획 공통) */
         .timeline-container {
             position: relative;
@@ -1507,7 +1541,8 @@
                 <div class="reveal" style="margin-top: 40px;">
                     <div style="margin-bottom: 35px; border-bottom: 1px solid var(--point-navy); padding-bottom: 15px;">
                         <h3 style="font-size: 24px; font-weight: 900; color: var(--point-navy);">MFL 활동 계획</h3>
-                        <p style="color: var(--text-muted); font-size: 14px; margin-top: 5px;">마케팅과 브랜딩의 지평을 넓히기 위한 MFL만의 고품격 실무 커리큘럼입니다.</p>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-top: 5px;">마케팅과 브랜딩의 지평을 넓히기 위한
+                            MFL만의 고품격 실무 커리큘럼입니다.</p>
                     </div>
                     <div class="timeline-container">
                         <div class="timeline-block">
@@ -1555,7 +1590,8 @@
                             <div class="timeline-card">
                                 <div class="timeline-date">Curriculum 06</div>
                                 <h4 class="timeline-title">📦 실전 스마트 SCM 공급망 최적화 프로젝트</h4>
-                                <p class="timeline-desc">시뮬레이션을 통해 채찍효과(Bullwhip Effect)를 직접 진단하고, 제조부터 소매까지의 전 과정에서 실시간 데이터
+                                <p class="timeline-desc">시뮬레이션을 통해 채찍효과(Bullwhip Effect)를 직접 진단하고, 제조부터 소매까지의 전 과정에서 실시간
+                                    데이터
                                     공유와 재고 최적화를 실현하는 실전 SCM 운영 능력을 기릅니다.</p>
                             </div>
                         </div>
@@ -1640,15 +1676,50 @@
                         <p>동아리원들이 직접 작성하고 업로드한 인사이트 블로그 글 모음입니다.</p>
                     </div>
                 </div>
+
                 <div class="blog-grid reveal" id="blogContainer"></div>
-                <div class="upload-box reveal">
-                    <h3 style="font-size:16px; font-weight:800; margin-bottom:15px; color:var(--point-navy);">🔗 새 블로그
-                        피드 링크 연동</h3>
-                    <input type="text" id="blogTitle" placeholder="블로그 포스팅 제목을 적어주세요">
-                    <input type="text" id="blogAuthor" placeholder="작성자 성함을 입력해 주세요 (예: 최서희)">
-                    <textarea id="blogDesc" rows="3" placeholder="블로그 포스팅의 주요 요약을 한두 줄로 입력해 주세요."></textarea>
-                    <input type="text" id="blogUrl" placeholder="네이버 블로그, 벨로그 등의 실제 포스팅 주소를 입력하세요">
-                    <button class="action-btn" onclick="handleBlogUpload()">블로그 피드 추가하기</button>
+
+                <div class="upload-box reveal"
+                    style="max-width: 600px; margin: 40px auto 0; padding: 30px; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); box-sizing: border-box;">
+                    <h3
+                        style="font-size: 18px; font-weight: 800; margin-bottom: 20px; color: var(--point-navy, #1e293b); display: flex; align-items: center; gap: 8px;">
+                        🔗 새 블로그 피드 링크 연동
+                    </h3>
+
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label for="blogTitle" style="font-size: 13px; font-weight: 700; color: #475569;">포스팅
+                                제목</label>
+                            <input type="text" id="blogTitle" placeholder="블로그 포스팅 제목을 적어주세요"
+                                style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; box-sizing: border-box; transition: border-color 0.2s;">
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label for="blogAuthor"
+                                style="font-size: 13px; font-weight: 700; color: #475569;">작성자</label>
+                            <input type="text" id="blogAuthor" placeholder="작성자 성함을 입력해 주세요 (예: 최서희)"
+                                style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; box-sizing: border-box; transition: border-color 0.2s;">
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label for="blogDesc" style="font-size: 13px; font-weight: 700; color: #475569;">주요
+                                요약</label>
+                            <textarea id="blogDesc" rows="3" placeholder="블로그 포스팅의 주요 요약을 한두 줄로 입력해 주세요."
+                                style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; font-family: inherit; box-sizing: border-box; resize: none; transition: border-color 0.2s;"></textarea>
+                        </div>
+
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label for="blogUrl" style="font-size: 13px; font-weight: 700; color: #475569;">실제 포스팅 주소
+                                (URL)</label>
+                            <input type="text" id="blogUrl" placeholder="네이버 블로그, 벨로그 등의 실제 포스팅 주소를 입력하세요"
+                                style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; box-sizing: border-box; transition: border-color 0.2s;">
+                        </div>
+
+                        <button class="action-btn" onclick="handleBlogUpload()"
+                            style="width: 100%; padding: 14px; background: var(--point-navy, #1e293b); color: #ffffff; border: none; border-radius: 6px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 10px; transition: background 0.2s;">
+                            블로그 피드 추가하기
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1798,11 +1869,7 @@
         let isLoggedIn = false;
         let pendingPageId = null;
 
-        // 초기 기본 목업 블로그 데이터
-        const defaultBlogData = [
-            { id: 1, title: "퍼스널 브랜딩을 활용한 2026 트렌드 공략 전략", desc: "소비자의 핵심 페르소나를 타겟팅하여 브랜드 팬덤을 견고하게 빌드업하는 방법론에 대해 고찰해 보았습니다.", author: "최서희", url: "https://blog.naver.com" },
-            { id: 2, title: "데이터 분석에 기반한 신제품 시장 침투기", desc: "마케팅 퍼널과 전환율 데이터를 분석해 내고 실제 광고 효율성 검증을 통한 실무 전략입니다.", author: "김마케", url: "https://blog.naver.com" }
-        ];
+        const defaultBlogData = [];
 
         let blogData = [];
 
@@ -1907,10 +1974,10 @@
             const urlInput = document.getElementById('blogUrl');
             if (!titleInput.value || !authorInput.value || !descInput.value || !urlInput.value) { alert("모두 입력하세요."); return; }
             let blogUrl = urlInput.value.startsWith('http') ? urlInput.value : 'https://' + urlInput.value;
-            
+
             blogData.push({ id: Date.now(), title: titleInput.value, author: authorInput.value, desc: descInput.value, url: blogUrl });
             localStorage.setItem('mfl_blogs', JSON.stringify(blogData));
-            
+
             renderBlogs();
             titleInput.value = ''; authorInput.value = ''; descInput.value = ''; urlInput.value = '';
         }
@@ -2003,10 +2070,10 @@
         window.onload = function () {
             const localCal = localStorage.getItem('mfl_calendar');
             calendarEvents = localCal ? JSON.parse(localCal) : {};
-            
+
             const localBlogs = localStorage.getItem('mfl_blogs');
             blogData = localBlogs ? JSON.parse(localBlogs) : defaultBlogData;
-            
+
             renderCalendar();
             renderBlogs();
             showPage('home');
