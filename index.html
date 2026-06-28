@@ -292,15 +292,6 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .hero-wallpaper-logo {
-            max-width: 160px;
-            height: auto;
-            margin-bottom: 35px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(235, 194, 68, 0.35));
-            animation: float-slow 6s ease-in-out infinite;
-        }
-
         .hero-main-title {
             font-family: 'Noto Sans KR', sans-serif;
             font-size: 48px;
@@ -532,106 +523,6 @@
             color: var(--point-navy);
         }
 
-        /* 🖼️ 7. [COMMUNITY - 미디어관] */
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-            gap: 24px;
-            margin-bottom: 45px;
-        }
-
-        .media-card {
-            background: var(--card-white);
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            overflow: hidden;
-            position: relative;
-            transition: var(--transition-smooth);
-        }
-
-        .media-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
-        }
-
-        .media-img-wrapper {
-            width: 100%;
-            height: 210px;
-            background-color: #cbd5e1;
-        }
-
-        .media-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .media-body {
-            padding: 20px;
-        }
-
-        .media-card-title {
-            font-size: 17px;
-            font-weight: 800;
-            color: var(--point-navy);
-            margin-bottom: 8px;
-        }
-
-        .media-card-desc {
-            color: #475569;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .delete-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(220, 38, 38, 0.85);
-            color: white;
-            border: none;
-            padding: 4px 10px;
-            font-size: 12px;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .upload-box {
-            background: #f8f9fa;
-            border: 1px solid var(--border-light);
-            border-radius: 18px;
-            padding: 30px;
-        }
-
-        .upload-box input,
-        .upload-box textarea {
-            width: 100%;
-            margin-bottom: 14px;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .action-btn {
-            background: var(--point-navy);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: 700;
-            font-size: 15px;
-            transition: var(--transition-smooth);
-        }
-
-        .action-btn:hover {
-            background-color: #1a1936;
-        }
-
         /* 📋 8. [COMMUNITY - 피드 (블로그)] */
         .blog-grid {
             display: grid;
@@ -650,6 +541,7 @@
             flex-direction: column;
             justify-content: space-between;
             min-height: 220px;
+            position: relative;
         }
 
         .blog-card:hover {
@@ -664,6 +556,7 @@
             color: var(--point-navy);
             margin-bottom: 10px;
             line-height: 1.4;
+            padding-right: 40px;
         }
 
         .blog-desc {
@@ -696,6 +589,26 @@
         .blog-link-btn:hover {
             background-color: var(--point-gold);
             color: var(--point-navy);
+        }
+
+        .blog-delete-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(220, 38, 38, 0.85);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition-smooth);
+        }
+
+        .blog-delete-btn:hover {
+            background: rgb(220, 38, 38);
         }
 
         /* 📝 9. 타임라인 구조 (활동기록 & 활동계획 공통) */
@@ -1393,7 +1306,6 @@
                 <li class="menu-item">
                     <a>커뮤니티</a>
                     <ul class="dropdown">
-                        <li><a onclick="showPage('media')">미디어관</a></li>
                         <li><a onclick="showPage('feed')">피드</a></li>
                         <li><a onclick="showPage('history')">활동기록</a></li>
                     </ul>
@@ -1569,7 +1481,7 @@
                     <div class="value-card">
                         <div class="value-num">01</div>
                         <div class="value-title">Market Insight</div>
-                        <p style="color:var(--text-muted); font-size:14px; line-height:1.6;">철저한 데이터 분석และ 트렌드 리서치를 기반으로 한
+                        <p style="color:var(--text-muted); font-size:14px; line-height:1.6;">철저한 데이터 분석과 트렌드 리서치를 기반으로 한
                             거시적/미시적 시장 해석 능력을 배양합니다.</p>
                     </div>
                     <div class="value-card">
@@ -1713,25 +1625,6 @@
                 </div>
             </div>
         </div>
-        <div id="mediaPage" class="page-content">
-            <div class="container">
-                <div class="page-header reveal">
-                    <div>
-                        <h2>MFL 미디어관</h2>
-                        <p>실시간으로 프로젝트 현장 사진과 활약 피드를 게시하는 공간입니다.</p>
-                    </div>
-                </div>
-                <div class="media-grid reveal" id="galleryContainer"></div>
-                <div class="upload-box reveal">
-                    <h3 style="font-size:16px; font-weight:800; margin-bottom:15px; color:var(--point-navy);">📸 활동 현장
-                        피드 발행</h3>
-                    <input type="text" id="mediaTitle" placeholder="프로젝트명 또는 활동 제목을 입력하세요">
-                    <textarea id="mediaDesc" rows="3" placeholder="이번 마케팅 세션의 핵심 인사이트 및 활동 요약을 기록해 주세요."></textarea>
-                    <input type="file" id="mediaFile" accept="image/*">
-                    <button class="action-btn" onclick="handleUpload()">미디어 피드 발행하기</button>
-                </div>
-            </div>
-        </div>
 
         <div id="feedPage" class="page-content">
             <div class="container">
@@ -1853,7 +1746,7 @@
                 </div>
             </div>
         </div>
- main>
+    </main>
 
     <div id="loginModal" class="login-modal-overlay">
         <div class="login-card">
@@ -1899,18 +1792,16 @@
         let isLoggedIn = false;
         let pendingPageId = null;
 
-        // 목업 데이터 제공
-        let mediaData = [
-            { id: 1, title: "⚡ MFL 1기 마케팅 워크숍 개최", desc: "시장 인사이트 확보를 위한 STP 전략 프레임워크 실무 과제 기획을 성공적으로 개시했습니다.", img: "MFL.png" }
-        ];
-
-        let blogData = [
+        // 초기 기본 목업 블로그 데이터
+        const defaultBlogData = [
             { id: 1, title: "퍼스널 브랜딩을 활용한 2026 트렌드 공략 전략", desc: "소비자의 핵심 페르소나를 타겟팅하여 브랜드 팬덤을 견고하게 빌드업하는 방법론에 대해 고찰해 보았습니다.", author: "최서희", url: "https://blog.naver.com" },
             { id: 2, title: "데이터 분석에 기반한 신제품 시장 침투기", desc: "마케팅 퍼널과 전환율 데이터를 분석해 내고 실제 광고 효율성 검증을 통한 실무 전략입니다.", author: "김마케", url: "https://blog.naver.com" }
         ];
 
+        let blogData = [];
+
         function showPage(pageId) {
-            const communityPages = ['media', 'feed', 'history'];
+            const communityPages = ['feed', 'history'];
 
             if (communityPages.includes(pageId) && !isLoggedIn) {
                 pendingPageId = pageId;
@@ -1973,7 +1864,7 @@
                 document.getElementById('authNavItem').innerHTML = `<a onclick="handleLogout()" style="color: var(--text-muted);">로그아웃</a>`;
                 closeLoginModal();
                 if (pendingPageId) showPage(pendingPageId);
-                else showPage('media');
+                else showPage('feed');
             } else {
                 alert("아이디 또는 비밀번호가 일치하지 않습니다.");
             }
@@ -1988,35 +1879,6 @@
             showPage('home');
         }
 
-        function renderMedia() {
-            const container = document.getElementById('galleryContainer');
-            if (!container) return;
-            container.innerHTML = '';
-            mediaData.forEach(item => {
-                container.innerHTML += `
-                    <div class="media-card">
-                        <button class="delete-btn" onclick="deleteMedia(${item.id})">삭제</button>
-                        <div class="media-img-wrapper"><img src="${item.img}" alt="활동 스냅샷" onerror="this.src='https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=600&q=80'"></div>
-                        <div class="media-body"><h4 class="media-card-title">${item.title}</h4><p class="media-card-desc">${item.desc}</p></div>
-                    </div>`;
-            });
-            checkReveal();
-        }
-
-        function handleUpload() {
-            const titleInput = document.getElementById('mediaTitle');
-            const descInput = document.getElementById('mediaDesc');
-            const fileInput = document.getElementById('mediaFile');
-            if (!titleInput.value || !descInput.value) { alert("내용을 입력하세요."); return; }
-            let imgUrl = "MFL.png";
-            if (fileInput.files && fileInput.files[0]) imgUrl = URL.createObjectURL(fileInput.files[0]);
-            mediaData.push({ id: Date.now(), title: titleInput.value, desc: descInput.value, img: imgUrl });
-            renderMedia();
-            titleInput.value = ''; descInput.value = ''; fileInput.value = '';
-        }
-
-        function deleteMedia(id) { mediaData = mediaData.filter(item => item.id !== id); renderMedia(); }
-
         function renderBlogs() {
             const container = document.getElementById('blogContainer');
             if (!container) return;
@@ -2024,6 +1886,7 @@
             blogData.forEach(item => {
                 container.innerHTML += `
                     <div class="blog-card">
+                        <button class="blog-delete-btn" onclick="deleteBlog(${item.id})">삭제</button>
                         <div><h4 class="blog-title">${item.title}</h4><p class="blog-desc">${item.desc}</p></div>
                         <div class="blog-footer"><span>작성자: ${item.author}</span><a href="${item.url}" target="_blank" class="blog-link-btn">블로그 방문</a></div>
                     </div>`;
@@ -2038,9 +1901,18 @@
             const urlInput = document.getElementById('blogUrl');
             if (!titleInput.value || !authorInput.value || !descInput.value || !urlInput.value) { alert("모두 입력하세요."); return; }
             let blogUrl = urlInput.value.startsWith('http') ? urlInput.value : 'https://' + urlInput.value;
+            
             blogData.push({ id: Date.now(), title: titleInput.value, author: authorInput.value, desc: descInput.value, url: blogUrl });
+            localStorage.setItem('mfl_blogs', JSON.stringify(blogData)); // 영구 저장 활성화
+            
             renderBlogs();
             titleInput.value = ''; authorInput.value = ''; descInput.value = ''; urlInput.value = '';
+        }
+
+        function deleteBlog(id) {
+            blogData = blogData.filter(item => item.id !== id);
+            localStorage.setItem('mfl_blogs', JSON.stringify(blogData)); // 영구 저장 갱신
+            renderBlogs();
         }
 
         let currentYear = 2026;
@@ -2123,10 +1995,13 @@
         }
 
         window.onload = function () {
-            const localData = localStorage.getItem('mfl_calendar');
-            calendarEvents = localData ? JSON.parse(localData) : {};
+            const localCal = localStorage.getItem('mfl_calendar');
+            calendarEvents = localCal ? JSON.parse(localCal) : {};
+            
+            const localBlogs = localStorage.getItem('mfl_blogs');
+            blogData = localBlogs ? JSON.parse(localBlogs) : defaultBlogData;
+            
             renderCalendar();
-            renderMedia();
             renderBlogs();
             showPage('home');
         };
