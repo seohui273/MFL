@@ -2118,8 +2118,8 @@
             showPage('home');
         };
         // MFL 1기 모집 일정 설정 (2026년 3월 기준)
-        const RECRUIT_START = new Date("2026-03-02T00:00:00");
-        const RECRUIT_END = new Date("2026-03-11T23:59:59");
+        const RECRUIT_START = new Date("2026-08-24T00:00:00");
+        const RECRUIT_END = new Date("2026-09-05T17:59:59");
 
         function checkApplyPeriod() {
             const now = new Date();
@@ -2133,7 +2133,7 @@
             if (now < RECRUIT_START) {
                 // 1. 모집 기간 시작 전
                 statusTitle.innerText = "아직 모집 기간이 아닙니다.";
-                statusDesc.innerHTML = `MFL 2기 신입 부원 모집 준비 중입니다!<br><b>지원 기간:</b> 2026년 3월 2일(월) ~ 3월 11일(수)`;
+                statusDesc.innerHTML = `MFL 2기 신입 부원 모집 준비 중입니다!<br><b>지원 기간:</b> 2026년 8월 24일(월) ~ 9월 05일(수) 18시`;
                 closedBox.style.style.display = "block";
                 openContent.style.display = "none";
             } else if (now >= RECRUIT_START && now <= RECRUIT_END) {
@@ -2142,8 +2142,8 @@
                 openContent.style.display = "block";
             } else {
                 // 3. 모집 기간 마감 후
-                statusTitle.innerText = "MFL 1기 서류 접수가 마감되었습니다.";
-                statusDesc.innerHTML = `아쉽게도 1기 신입 학회원 정기 서류 모집이 종료되었습니다.<br>다음 기수 모집 일정을 기대해 주세요!`;
+                statusTitle.innerText = "MFL 2기 서류 접수가 마감되었습니다.";
+                statusDesc.innerHTML = `아쉽게도 2기 신입 부원 정기 서류 모집이 종료되었습니다.<br>다음 기수 모집 일정을 기대해 주세요!`;
                 closedBox.style.display = "block";
                 openContent.style.display = "none";
             }
