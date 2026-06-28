@@ -2133,8 +2133,8 @@
             if (now < RECRUIT_START) {
                 // 1. 모집 기간 시작 전
                 statusTitle.innerText = "아직 모집 기간이 아닙니다.";
-                statusDesc.innerHTML = `MFL 2기 신입 부원 모집 준비 중입니다!<br><b>지원 기간:</b> 2026년 8월 24일(월) ~ 9월 05일(수) 18시`;
-                closedBox.style.style.display = "block";
+                statusDesc.innerHTML = `MFL 2기 신입 부원 모집 준비 중입니다!<br><b>지원 기간:</b> 2026년 08월 24일(월) ~ 9월 05일(수) 18시 까지`;
+                closedBox.style.display = "block"; // <-- 오타 수정 완료!
                 openContent.style.display = "none";
             } else if (now >= RECRUIT_START && now <= RECRUIT_END) {
                 // 2. 정식 모집 기간 중 (상세 내용 및 지원 버튼 오픈)
@@ -2149,17 +2149,19 @@
             }
         }
 
-        // 최초 로드 시 실행
-        document.addEventListener("DOMContentLoaded", checkApplyPeriod);
+        // 기존 showPage 함수가 실행될 때 자동으로 날짜 체크가 함께 돌아가도록 안전하게 가로채기(바인딩)
+        if (typeof showPage === 'function') {
+            const originalShowPage = showPage;
+            showPage = function (pageId) {
+                if (pageId === 'apply') {
+                    checkApplyPeriod();
+                }
+                originalShowPage(pageId);
+            };
+        }
 
-        // 기존 showPage 함수 내에서도 메뉴를 클릭할 때마다 실시간 체크 연동하기 위해 원래 함수 보완
-        const originalShowPage = showPage;
-        showPage = function (pageId) {
-            if (pageId === 'apply') {
-                checkApplyPeriod();
-            }
-            originalShowPage(pageId);
-        };
+        // 최초 로드 시에도 한 번 실행해 주기
+        document.addEventListener("DOMContentLoaded", checkApplyPeriod);
     </script>
 </body>
 
