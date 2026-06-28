@@ -535,35 +535,36 @@
             background: var(--card-white);
             border: 1px solid var(--border-light);
             border-radius: 16px;
-            padding: 24px;
+            padding: 28px 24px 24px 24px;
             transition: var(--transition-smooth);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 220px;
+            min-height: 230px;
             position: relative;
+            box-shadow: 0 4px 12px rgba(11, 10, 28, 0.01);
         }
 
         .blog-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(11, 10, 28, 0.15);
-            box-shadow: 0 15px 30px rgba(11, 10, 28, 0.05);
+            border-color: rgba(235, 194, 68, 0.3);
+            box-shadow: 0 15px 35px rgba(11, 10, 28, 0.06);
         }
 
         .blog-title {
             font-size: 18px;
             font-weight: 800;
             color: var(--point-navy);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             line-height: 1.4;
-            padding-right: 40px;
+            padding-right: 35px;
         }
 
         .blog-desc {
             color: #475569;
             font-size: 14px;
             line-height: 1.6;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .blog-footer {
@@ -572,16 +573,16 @@
             align-items: center;
             font-size: 12px;
             color: var(--text-muted);
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            padding-top: 12px;
+            border-top: 1px solid rgba(11, 10, 28, 0.06);
+            padding-top: 14px;
         }
 
         .blog-link-btn {
             background-color: var(--point-navy);
             color: white;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 11px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
             font-weight: 700;
             transition: var(--transition-smooth);
         }
@@ -593,22 +594,27 @@
 
         .blog-delete-btn {
             position: absolute;
-            top: 20px;
+            top: 24px;
             right: 20px;
-            background: rgba(220, 38, 38, 0.85);
-            color: white;
+            background: none;
+            color: #94a3b8;
             border: none;
-            padding: 4px 8px;
-            font-size: 11px;
-            font-weight: 700;
-            border-radius: 4px;
+            font-size: 18px;
             cursor: pointer;
             z-index: 10;
             transition: var(--transition-smooth);
+            line-height: 1;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
 
         .blog-delete-btn:hover {
-            background: rgb(220, 38, 38);
+            background: rgba(220, 38, 38, 0.1);
+            color: #dc2626;
         }
 
         /* 📝 9. 타임라인 구조 (활동기록 & 활동계획 공통) */
@@ -1886,7 +1892,7 @@
             blogData.forEach(item => {
                 container.innerHTML += `
                     <div class="blog-card">
-                        <button class="blog-delete-btn" onclick="deleteBlog(${item.id})">삭제</button>
+                        <button class="blog-delete-btn" onclick="deleteBlog(${item.id})" title="삭제">&times;</button>
                         <div><h4 class="blog-title">${item.title}</h4><p class="blog-desc">${item.desc}</p></div>
                         <div class="blog-footer"><span>작성자: ${item.author}</span><a href="${item.url}" target="_blank" class="blog-link-btn">블로그 방문</a></div>
                     </div>`;
@@ -1903,7 +1909,7 @@
             let blogUrl = urlInput.value.startsWith('http') ? urlInput.value : 'https://' + urlInput.value;
             
             blogData.push({ id: Date.now(), title: titleInput.value, author: authorInput.value, desc: descInput.value, url: blogUrl });
-            localStorage.setItem('mfl_blogs', JSON.stringify(blogData)); // 영구 저장 활성화
+            localStorage.setItem('mfl_blogs', JSON.stringify(blogData));
             
             renderBlogs();
             titleInput.value = ''; authorInput.value = ''; descInput.value = ''; urlInput.value = '';
@@ -1911,7 +1917,7 @@
 
         function deleteBlog(id) {
             blogData = blogData.filter(item => item.id !== id);
-            localStorage.setItem('mfl_blogs', JSON.stringify(blogData)); // 영구 저장 갱신
+            localStorage.setItem('mfl_blogs', JSON.stringify(blogData));
             renderBlogs();
         }
 
