@@ -91,6 +91,22 @@
             transform: scale(1.05);
         }
 
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--point-navy);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            user-select: none;
+        }
+
+        .logo-text:hover {
+            color: var(--point-gold);
+            transform: scale(1.05);
+        }
+
         .nav-menu {
             display: flex;
             list-style: none;
@@ -1333,8 +1349,7 @@
 
     <header>
         <div class="nav-container">
-            <img src="MFL.png" alt="MFL 로고" class="logo-img" onclick="showPage('home')"
-                onerror="this.style.display='none'">
+            <a class="logo-text" onclick="showPage('home')" aria-label="MFL 홈">MFL</a>
             <ul class="nav-menu">
                 <li class="menu-item">
                     <a>About Us</a>
@@ -1421,7 +1436,7 @@
                         <div class="stat-card">
                             <div class="stat-num">15<span>+</span></div>
                             <div class="stat-label">주차 밀착 세션</div>
-                            <p class="stat-desc">매 기수 탄탄한 분석 피드백 루프와 동료 평가 시스템을 통해 마케터로 동반 성장합니다.</p>
+                            <p class="stat-desc">매 기수 탄탄한 분석 피드백 루프와 동료 평가 시스템을 통해 마케터로 동반 성장.</p>
                         </div>
                     </div>
                 </div>
@@ -1454,23 +1469,6 @@
                         </div>
                     </div>
                     <div class="timeline-block">
-                        <div class="timeline-icon"></div>
-                        <div class="timeline-card">
-                            <div class="timeline-date">2026.04.04</div>
-                            <h4 class="timeline-title">IFS 프랜차이즈 창업 박람회 참관</h4>
-                            <p class="timeline-desc">최신 산업 트렌드 파악 및 다양한 프랜차이즈 비즈니스 모델을 직접 체험하고 기획 분석력을 넓혔습니다.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-block">
-                        <div class="timeline-icon"></div>
-                        <div class="timeline-card">
-                            <div class="timeline-date">2026.05.06 - 05.08</div>
-                            <h4 class="timeline-title">대동제 플리마켓 부스 기획 및 운영</h4>
-                            <p class="timeline-desc">전북대학교 대동제 축제 기간 동안 직접 부스를 기획, 브랜딩, 영업, 분석까지 소화하며 실전 비즈니스 마케팅을
-                                경험했습니다.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-block">
                         <div class="timeline-icon" style="background-color: var(--point-gold);"></div>
                         <div class="timeline-card" style="border-left: 4.5px solid var(--point-gold);">
                             <div class="timeline-date" style="color: var(--point-navy); font-weight: 900;">2026 상반기
@@ -1483,6 +1481,8 @@
                                 <li><strong>기업 분석 및 심화형 설문·통계 분석:</strong> 통계 분석 툴을 활용한 정량 분석 기법을 학습했습니다.</li>
                                 <li><strong>CEDA 정기 대면 토론 세션:</strong> 마케팅 쟁점에 대해 논리적이고 정교한 비판적 토론을 수행했습니다.</li>
                                 <li><strong>OPIC 글로벌 스피킹 역량 스터디:</strong> 외국어 말하기 자율 스터디 그룹을 운영하며 기본 스펙을 다졌습니다.</li>
+                                <li><strong>IFS 프랜차이즈 창업 박람회 참관 (2026.04.04):</strong> 최신 산업 트렌드 파악 및 다양한 프랜차이즈 비즈니스 모델을 직접 체험하고 기획 분석력을 넓혔습니다.</li>
+                                <li><strong>대동제 플리마켓 부스 기획 및 운영 (2026.05.06 - 05.08):</strong> 전북대학교 대동제 축제 기간 동안 직접 부스를 기획, 브랜딩, 영업, 분석까지 소화하며 실전 비즈니스 마케팅을 경험했습니다.</li>
                                 <li><strong>가상기업 브랜드 전략 설계:</strong> 가상의 스타트업 모델 기업 포지셔닝부터 마케팅 믹스 전략 수립까지 포괄하는 프로젝트를
                                     성료했습니다.</li>
                             </ul>
