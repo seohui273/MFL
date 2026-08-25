@@ -1266,19 +1266,244 @@
             transform: translateY(0);
         }
 
-        @media (max-width: 768px) {
-            .apply-details-grid {
-                grid-template-columns: 1fr;
-            }
+@media (max-width:768px){
 
-            .dept-card-group {
-                grid-template-columns: 1fr;
-            }
+    /* 전체 여백 */
+    .container{
+        padding:0 18px;
+        margin:40px auto 70px;
+    }
 
-            .apply-timeline {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+    /* 네비게이션 */
+    .nav-container{
+        height:65px;
+        padding:0 15px;
+    }
+
+    .logo-text{
+        font-size:22px;
+    }
+
+    .nav-menu{
+        gap:6px;
+    }
+
+    .menu-item>a{
+        padding:0 8px;
+        font-size:12px;
+    }
+
+    /* 메인 첫 화면 */
+    .hero-viewport{
+        height:auto;
+        min-height:90vh;
+        padding:30px 18px;
+    }
+
+    .cinematic-wallpaper-card{
+        padding:45px 20px;
+        border-radius:24px;
+    }
+
+    .hero-wallpaper-logo{
+        max-width:110px;
+        margin-bottom:22px;
+    }
+
+    .hero-tag{
+        font-size:11px;
+        padding:6px 16px;
+    }
+
+    .hero-sub-slogan{
+        font-size:14px;
+        margin-bottom:12px;
+    }
+
+    .hero-main-title{
+        font-size:32px;
+        line-height:1.35;
+        letter-spacing:-1px;
+    }
+
+    /* 페이지 제목 */
+    .page-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+
+    .page-header h2{
+        font-size:24px;
+    }
+
+    .page-header p{
+        font-size:13px;
+    }
+
+    /* 소개 영역 */
+    .about-intro-grid{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .about-intro-grid h3{
+        font-size:22px;
+    }
+
+    .about-intro-grid p{
+        font-size:15px;
+    }
+
+    /* 가치 카드 */
+    .value-card-group{
+        grid-template-columns:1fr;
+        gap:16px;
+    }
+
+    /* 통계 카드 */
+    .stats-board{
+        grid-template-columns:1fr;
+        gap:16px;
+    }
+
+    .stat-card{
+        padding:25px 18px;
+    }
+
+    .stat-num{
+        font-size:34px;
+    }
+
+    .stat-label{
+        font-size:15px;
+    }
+
+    /* 조직도 */
+    .org-grid{
+        grid-template-columns:1fr;
+    }
+
+    /* 활동 기록 타임라인 */
+    .timeline-container::after{
+        left:18px;
+    }
+
+    .timeline-block{
+        padding-left:45px;
+    }
+
+    .timeline-icon{
+        left:18px;
+    }
+
+    .timeline-card{
+        padding:18px;
+    }
+
+    .timeline-title{
+        font-size:16px;
+    }
+
+    .timeline-desc{
+        font-size:13px;
+    }
+
+    /* 피드 */
+    .blog-grid{
+        grid-template-columns:1fr;
+    }
+
+    /* 캘린더 */
+    .calendar-day{
+        min-height:70px;
+        padding:4px;
+    }
+
+    .day-num{
+        font-size:11px;
+    }
+
+    .event-badge{
+        font-size:9px;
+        padding:2px 4px;
+    }
+
+    /* 모집 안내 */
+    .apply-hero-banner{
+        padding:45px 20px;
+    }
+
+    .apply-hero-text h3{
+        font-size:24px;
+    }
+
+    .apply-hero-text p{
+        font-size:14px;
+    }
+
+    .apply-details-grid{
+        grid-template-columns:1fr;
+    }
+
+    .dept-card-group{
+        grid-template-columns:1fr;
+    }
+
+    .apply-timeline{
+        grid-template-columns:1fr;
+    }
+
+    /* 버튼 */
+    .cta-apply-btn{
+        width:100%;
+        text-align:center;
+        padding:16px;
+        font-size:15px;
+    }
+
+    .action-btn{
+        font-size:14px;
+    }
+
+    /* 푸터 */
+    .footer-container{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+/* 📱 작은 아이폰/갤럭시 */
+@media (max-width:480px){
+
+    .hero-main-title{
+        font-size:28px;
+    }
+
+    .hero-sub-slogan{
+        font-size:13px;
+    }
+
+    .hero-tag{
+        font-size:10px;
+    }
+
+    .page-header h2{
+        font-size:22px;
+    }
+
+    .stat-num{
+        font-size:30px;
+    }
+
+    .timeline-card{
+        padding:15px;
+    }
+
+    .calendar-day{
+        min-height:60px;
+    }
+}
 
         @media (max-width: 480px) {
             .apply-timeline {
