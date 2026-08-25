@@ -1567,6 +1567,42 @@
                 transform: translate(-50%, -5px);
             }
         }
+        /* 📱 모바일 메뉴 클릭 시 드롭다운 */
+@media (max-width: 768px) {
+
+    .menu-item {
+        position: relative;
+    }
+
+    .menu-item > a {
+        white-space: nowrap;
+        cursor: pointer;
+    }
+
+    .menu-item .dropdown {
+        top: 58px;
+        left: 50%;
+        min-width: 110px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateX(-50%) scale(0.95);
+        z-index: 2000;
+    }
+
+    .menu-item.mobile-open .dropdown {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) scale(1);
+    }
+
+    .dropdown li a {
+        padding: 10px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+}
     </style>
 </head>
 
@@ -2369,6 +2405,37 @@
 
         // 최초 로드 시에도 한 번 실행해 주기
         document.addEventListener("DOMContentLoaded", checkApplyPeriod);
+        /* 📱 모바일 메뉴 클릭 기능 */
+document.querySelectorAll('.menu-item > a').forEach(function(menu) {
+    menu.addEventListener('click', function(e) {
+
+        // 모바일에서만 작동
+        if (window.innerWidth <= 768) {
+
+            const parent = this.parentElement;
+            const dropdown = parent.querySelector('.dropdown');
+
+            // 하위 메뉴가 없는 경우
+            if (!dropdown) {
+                return;
+            }
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            // 다른 메뉴 닫기
+            document.querySelectorAll('.menu-item').forEach(function(item) {
+                if (item !== parent) {
+                    item.classList.remove('mobile-open');
+                }
+            });
+
+            // 현재 메뉴 열기/닫기
+            parent.classList.toggle('mobile-open');
+        }
+    });
+});
+
     </script>
 </body>
 
