@@ -1877,8 +1877,8 @@
                         </div>
                         <div class="member-card">
                             <div class="member-role">총무</div>
-                            <p style="font-size:13px; color:var(--text-muted); margin: 6px 0 10px;">스페인중남미학과 23학번</p>
-                            <div class="member-name">김건웅</div>
+                            <p style="font-size:13px; color:var(--text-muted); margin: 6px 0 10px;">통계학과 24학번</p>
+                            <div class="member-name">배서연</div>
                         </div>
                     </div>
                 </div>
@@ -2040,7 +2040,7 @@
                             <div class="apply-timeline-step">
                                 <div class="step-num">01</div>
                                 <h5>서류 접수</h5>
-                                <p>~2026.09.05(수) 18시</p>
+                                <p>~2026.09.05(수) </p>
                             </div>
                             <div class="apply-timeline-step">
                                 <div class="step-num">02</div>
@@ -2088,9 +2088,6 @@
                 <div class="input-group">
                     <label for="loginPw">비밀번호</label>
                     <input type="password" id="loginPw" placeholder="••••">
-                </div>
-                <div class="login-hint">
-                    💡 테스트 계정 — ID: <span>mfl</span> / PW: <span>2026</span>
                 </div>
                 <button class="login-submit-btn" onclick="submitLogin()">로그인하기</button>
             </div>
@@ -2327,9 +2324,9 @@
             renderBlogs();
             showPage('home');
         };
-        // MFL 1기 모집 일정 설정 (2026년 3월 기준)
-        const RECRUIT_START = new Date("2026-06-28T00:00:00");
-        const RECRUIT_END = new Date("2026-09-05T17:59:59");
+        // MFL 2기 모집 일정 설정 (2026년 3월 기준)
+        const RECRUIT_START = new Date("2026-08-26T00:00:00");
+        const RECRUIT_END = new Date("2026-09-05T23:59:59");
 
         function checkApplyPeriod() {
             const now = new Date();
@@ -2343,7 +2340,7 @@
             if (now < RECRUIT_START) {
                 // 1. 모집 기간 시작 전
                 statusTitle.innerText = "아직 모집 기간이 아닙니다.";
-                statusDesc.innerHTML = `MFL 2기 신입 부원 모집 준비 중입니다!<br><b>지원 기간:</b> 2026년 08월 24일(월) ~ 9월 05일(수) 18시`;
+                statusDesc.innerHTML = `MFL 2기 신입 부원 모집 준비 중입니다!<br><b>지원 기간:</b> 2026년 08월 26일(수) ~ 9월 05일(토)`;
                 closedBox.style.display = "block"; // <-- 오타 수정 완료!
                 openContent.style.display = "none";
             } else if (now >= RECRUIT_START && now <= RECRUIT_END) {
